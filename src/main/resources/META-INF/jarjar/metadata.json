@@ -2,14 +2,14 @@
   "jars": [
     {
       "identifier": {
-        "group": "io.github.kongzhongtitian.RecipesAPI",
+        "group": "io.github.kongzhongtitians.RecipesAPI",
         "artifact": "RecipesAPI"
       },
       "version": {
-        "range": "[1.0.1,)",
-        "artifactVersion": "1.0.1"
+        "range": "[1.1.0,)",
+        "artifactVersion": "1.1.0"
       },
-      "path": "META-INF/jarjar/RecipesAPI_Forge_1.20-1.20.1_1.0.1.jar",
+      "path": "META-INF/jarjar/RecipesAPI_Forge_1.20-1.20.1_1.1.0.jar",
       "isObfuscated": false
     },
     {

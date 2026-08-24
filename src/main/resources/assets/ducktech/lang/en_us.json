@@ -90,6 +90,10 @@
   "block.ducktech.injection_machine" : "Injection Machine",
   "block.ducktech.essence_furnace" : "Essence Furnace",
   "block.ducktech.essence_conversion_machine": "Essence Conversion Machine",
+  "block.ducktech.essence_blast_furnace" : "Essence Blast Furnace",
+  "block.ducktech.expulsion_machine" : "Expulsion Machine",
+  "block.ducktech.air_purifier": "Air Purifier",
+  "block.ducktech.fe2thermal_essence_machine": "FE to Thermal Essence Machine",
 
   "jei.tooltip.time": "time-consuming",
   "subtitles.ducktech.zaoyin": "Machines: Noises"

@@ -90,6 +90,11 @@
   "block.ducktech.juice_extractor" : "榨汁机",
   "item.ducktech.plastic_sheet": "塑料片",
   "item.ducktech.plastic_clump": "塑料团",
+  "block.ducktech.essence_blast_furnace" : "精华高炉",
+  "block.ducktech.expulsion_machine" : "驱逐器",
+  "block.ducktech.air_purifier": "空气净化器",
+  "block.ducktech.fe2thermal_essence_machine": "FE转热力精华机",
+  "block.exura.transporter_node": "传输节点",
 
   "jei.tooltip.time": "耗时",
   "subtitles.ducktech.zaoyin": "机器：噪音"

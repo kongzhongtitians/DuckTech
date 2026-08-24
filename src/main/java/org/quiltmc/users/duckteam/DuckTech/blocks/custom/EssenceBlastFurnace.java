@@ -1,34 +1,32 @@
 package org.quiltmc.users.duckteam.DuckTech.blocks.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlockEntity;
-import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.EssenceEarthFurnaceBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.EssenceBlastFurnaceBlockEntity;
+
 import javax.annotation.Nullable;
 
-public class EssenceEarthFurnace extends AbstractFurnaceBlock {
-    public EssenceEarthFurnace(Properties properties) {
+public class EssenceBlastFurnace extends AbstractFurnaceBlock {
+    public EssenceBlastFurnace(Properties properties) {
         super(properties);
     }
 
     @Override
     protected void openContainer(Level level, BlockPos pos, Player player) {
         BlockEntity be = level.getBlockEntity(pos);
-        if (be instanceof EssenceEarthFurnaceBlockEntity) {
+        if (be instanceof EssenceBlastFurnaceBlockEntity) {
             player.openMenu((MenuProvider) be);
         }
     }
@@ -36,7 +34,7 @@ public class EssenceEarthFurnace extends AbstractFurnaceBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new EssenceEarthFurnaceBlockEntity(pos, state);
+        return new EssenceBlastFurnaceBlockEntity(pos, state);
     }
 
     @Override
@@ -54,11 +52,10 @@ public class EssenceEarthFurnace extends AbstractFurnaceBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         if (level.isClientSide) return null;
-        if (type != DTBlockEntity.ESSENCE_EARTH_FURNACE_BLOCK_ENTITY.get()) return null;
-        // 若您的映射使用 MCP，改为 AbstractFurnaceBlockEntity.tick
+        if (type != DTBlockEntity.ESSENCE_BLAST_FURNACE_BLOCK_ENTITY.get()) return null;
         return (world, pos, blockState, blockEntity) -> {
-            if (blockEntity instanceof AbstractFurnaceBlockEntity furnace) {
-                AbstractFurnaceBlockEntity.serverTick(world, pos, blockState, furnace);
+            if (blockEntity instanceof EssenceBlastFurnaceBlockEntity furnace) {
+                furnace.serverTick(world, pos, blockState, furnace);
             }
         };
     }

@@ -14,46 +14,44 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_earth_furnace.EssenceEarthFurnaceMenu;
+import org.quiltmc.users.duckteam.DuckTech.items.DTItems;
 
 public class EssenceEarthFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
-    // 目标燃料物品
-    private static final Item THERMAL_ESSENCE = ForgeRegistries.ITEMS.getValue(
-            new ResourceLocation("ducktech", "thermal_essence"));
-    // 目标排除标签
     private static final TagKey<Item> ORE_TAG =
-            TagKey.create(Registries.ITEM, new ResourceLocation("ducktech", "ore"));
+            TagKey.create(Registries.ITEM, new ResourceLocation("forge", "ores"));
 
     public EssenceEarthFurnaceBlockEntity(BlockPos pos, BlockState state) {
         super(DTBlockEntity.ESSENCE_EARTH_FURNACE_BLOCK_ENTITY.get(), pos, state, RecipeType.SMELTING);
     }
 
-    // 限制槽位物品放置：燃料槽只能放thermal_essence，输入槽不能有ore标签
-    @Override
-    public boolean canPlaceItem(int slot, ItemStack stack) {
-        if (slot == 1) { // 燃料槽
-            return stack.is(THERMAL_ESSENCE);
-        } else if (slot == 0) { // 输入槽
-            return !stack.is(ORE_TAG);
-        }
-        return super.canPlaceItem(slot, stack);
+    // 自定义燃料判断（供菜单槽使用）
+    public boolean isFuelItem(ItemStack stack) {
+        return stack.is(DTItems.THERMAL_ESSENCE.get());
     }
 
-    // 定义燃料燃烧时间（tick），这里固定为400
+    // 覆写燃烧时间
     @Override
     protected int getBurnDuration(ItemStack stack) {
-        if (stack.is(THERMAL_ESSENCE)) {
-            return 400;
-        }
-        return 0;
+        return isFuelItem(stack) ? 400 : 0;
     }
 
-    // 创建菜单
+    // 输入槽限制
+    @Override
+    public boolean canPlaceItem(int slot, ItemStack stack) {
+        if (slot == 0) {
+            return !stack.is(ORE_TAG);
+        } else if (slot == 1) {
+            return isFuelItem(stack);
+        } else {
+            return false;
+        }
+    }
+
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("container.essence_earth_furnace");
+        return Component.translatable("block.ducktech.essence_earth_furnace");
     }
 
     @Override

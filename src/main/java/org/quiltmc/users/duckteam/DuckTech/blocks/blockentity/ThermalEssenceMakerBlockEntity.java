@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -17,8 +18,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.items.ItemStackHandler;
 import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.config.DTConfig;
 import org.quiltmc.users.duckteam.DuckTech.gui.thermal_essence_maker.ThermalEssenceMakerMenu;
 import org.quiltmc.users.duckteam.DuckTech.items.DTItems;
+import org.quiltmc.users.duckteam.DuckTech.sounds.DTSounds;
 
 import javax.annotation.Nullable;
 
@@ -86,7 +89,7 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
         setChanged();
     }
 
-    public void tickInternal() {
+    public void tickInternal(BlockPos pos) {
         if (level == null || level.isClientSide) return;
 
         if (outputCount <= 0) {
@@ -110,6 +113,14 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
 
         progress++;
         if (progress >= maxProgress) {
+            if (!level.isClientSide()&& DTConfig.switch_sound()) {
+                level.playSound(null, pos,
+                        DTSounds.ZAOYIN.get(),
+                        SoundSource.BLOCKS,
+                        1.0F,
+                        1.0F);
+            }
+
             input.shrink(1);
 
             ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
@@ -238,6 +249,6 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
 
     public static void tick(Level level, BlockPos pos, BlockState state, ThermalEssenceMakerBlockEntity entity) {
         if (level.isClientSide) return;
-        entity.tickInternal();
+        entity.tickInternal(pos);
     }
 }

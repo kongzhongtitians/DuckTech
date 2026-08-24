@@ -2,19 +2,20 @@ package org.quiltmc.users.duckteam.DuckTech.gui;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
-import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.EssenceEarthFurnaceBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FE2ThermalEssenceMachineBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FrozenEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.ThermalEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.gui.advance_shredder.AdvanceShredderMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.air_purifier.AirPurifierMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.essence_blast_furnace.EssenceBlastFurnaceMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_conversion_machine.EssenceConversionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_furnace.EssenceFurnaceMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.expulsion_machine.ExpulsionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.fe2thermal_essence_machine.FE2ThermalEssenceMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.frozen_essence_maker.FrozenEssenceMakerMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.injection_machine.InjectionMachineMenu;
@@ -80,19 +81,25 @@ public class DTMenu {
                             return new FrozenEssenceMakerMenu(windowId, inv, pos);
                         }
                     }));
+
     public static final RegistryObject<MenuType<EssenceEarthFurnaceMenu>> ESSENCE_EARTH_FURNACE =
             MENUS.register("essence_earth_furnace",
-                    () -> IForgeMenuType.create((windowId, inv, data) -> {
-                        BlockPos pos = data.readBlockPos();
-                        BlockEntity be = inv.player.level().getBlockEntity(pos);
-                        if (be instanceof EssenceEarthFurnaceBlockEntity furnace) {
-                            return new EssenceEarthFurnaceMenu(windowId, inv, furnace, furnace.getContainerData());
-                        }
-                        // 若获取不到，创建一个虚拟的 ContainerData 以免崩溃
-                        return new EssenceEarthFurnaceMenu(windowId, inv, null, new SimpleContainerData(4));
-                    }));
+                    () -> IForgeMenuType.create(EssenceEarthFurnaceMenu::new));
 
     public static final RegistryObject<MenuType<JuiceExtractorMenu>> JUICE_EXTRACTOR_MENU =
             MENUS.register("juice_extractor_menu", () -> IForgeMenuType.create(JuiceExtractorMenu::new
             ));
+
+    public static final RegistryObject<MenuType<EssenceBlastFurnaceMenu>> ESSENCE_BLAST_FURNACE_MENU =
+            MENUS.register("essence_blast_furnace",
+                    () -> IForgeMenuType.create(EssenceBlastFurnaceMenu::new));
+
+    public static final RegistryObject<MenuType<ExpulsionMachineMenu>> EXPULSION_MACHINE =
+            MENUS.register("expulsion_machine",
+                    () -> IForgeMenuType.create(ExpulsionMachineMenu::new));
+
+    public static final RegistryObject<MenuType<AirPurifierMenu>> AIR_PURIFIER_MENU =
+            MENUS.register("air_purifier",
+                    () -> IForgeMenuType.create((windowId, inv, data) ->
+                            new AirPurifierMenu(windowId, inv, data.readBlockPos())));
 }

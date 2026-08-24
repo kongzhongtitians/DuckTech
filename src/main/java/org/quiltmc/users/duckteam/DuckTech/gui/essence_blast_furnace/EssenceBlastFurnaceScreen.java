@@ -1,4 +1,4 @@
-package org.quiltmc.users.duckteam.DuckTech.gui.essence_earth_furnace;
+package org.quiltmc.users.duckteam.DuckTech.gui.essence_blast_furnace;
 
 import net.minecraft.client.gui.screens.inventory.AbstractFurnaceScreen;
 import net.minecraft.client.gui.screens.recipebook.AbstractFurnaceRecipeBookComponent;
@@ -10,9 +10,9 @@ import org.quiltmc.users.duckteam.DuckTech.items.DTItems;
 
 import java.util.Set;
 
-public class EssenceEarthFurnaceScreen extends AbstractFurnaceScreen<EssenceEarthFurnaceMenu> {
+public class EssenceBlastFurnaceScreen extends AbstractFurnaceScreen<EssenceBlastFurnaceMenu> {
 
-    public EssenceEarthFurnaceScreen(EssenceEarthFurnaceMenu menu, Inventory playerInventory, Component title) {
+    public EssenceBlastFurnaceScreen(EssenceBlastFurnaceMenu menu, Inventory playerInventory, Component title) {
         super(menu, new FurnaceRecipeBook(), playerInventory, title,
                 new ResourceLocation("textures/gui/container/furnace.png"));
     }
