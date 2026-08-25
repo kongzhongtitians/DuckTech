@@ -77,6 +77,7 @@ public class DTItems {
     //other
     public static final RegistryObject<Item> RUBBER_DUCK = registerSimpleItem("rubber_duck");
     public static final RegistryObject<Item> RUBBER = registerSimpleItem("rubber");
+    public static final RegistryObject<Item> RUBBER_BUCKET = registerSimpleItem("rubber_bucket");
     public static final RegistryObject<Item> YELLOW_RUBBER = registerSimpleItem("yellow_rubber");
     public static final RegistryObject<Item> DUCKTECH = registerSimpleItem("ducktech");
 

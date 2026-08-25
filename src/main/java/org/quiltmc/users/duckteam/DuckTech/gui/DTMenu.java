@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FE2ThermalEssenceMachineBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FrozenEssenceMakerBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.JuiceExtractorBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.ThermalEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.gui.advance_shredder.AdvanceShredderMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.air_purifier.AirPurifierMenu;
@@ -87,8 +88,14 @@ public class DTMenu {
                     () -> IForgeMenuType.create(EssenceEarthFurnaceMenu::new));
 
     public static final RegistryObject<MenuType<JuiceExtractorMenu>> JUICE_EXTRACTOR_MENU =
-            MENUS.register("juice_extractor_menu", () -> IForgeMenuType.create(JuiceExtractorMenu::new
-            ));
+            MENUS.register("juice_extractor", () -> IForgeMenuType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                BlockEntity be = inv.player.level().getBlockEntity(pos);
+                if (be instanceof JuiceExtractorBlockEntity extractor) {
+                    return new JuiceExtractorMenu(windowId, inv, extractor);
+                }
+                return new JuiceExtractorMenu(windowId, inv); // fallback
+            }));
 
     public static final RegistryObject<MenuType<EssenceBlastFurnaceMenu>> ESSENCE_BLAST_FURNACE_MENU =
             MENUS.register("essence_blast_furnace",
