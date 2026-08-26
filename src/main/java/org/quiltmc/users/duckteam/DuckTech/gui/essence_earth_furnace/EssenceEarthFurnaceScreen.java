@@ -21,7 +21,7 @@ public class EssenceEarthFurnaceScreen extends AbstractFurnaceScreen<EssenceEart
 
         @Override
         public boolean isVisible() {
-            return false;   // 隐藏配方书按钮
+            return false;
         }
 
         @Override

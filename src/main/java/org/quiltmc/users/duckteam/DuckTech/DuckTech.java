@@ -1,8 +1,6 @@
 package org.quiltmc.users.duckteam.DuckTech;
 
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -11,7 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.quiltmc.users.duckteam.DuckTech.blocks.*;
 import org.quiltmc.users.duckteam.DuckTech.config.DTConfig;
 import org.quiltmc.users.duckteam.DuckTech.gui.DTMenu;
-import org.quiltmc.users.duckteam.DuckTech.gui.ScreenRegister;
 import org.quiltmc.users.duckteam.DuckTech.items.*;
 import org.quiltmc.users.duckteam.DuckTech.recipe.*;
 import org.quiltmc.users.duckteam.DuckTech.sounds.DTSounds;
