@@ -18,10 +18,10 @@
         "artifact": "PipeAPI"
       },
       "version": {
-        "range": "[1.0.0,)",
-        "artifactVersion": "1.0.0"
+        "range": "[1.0.1,)",
+        "artifactVersion": "1.0.1"
       },
-      "path": "META-INF/jarjar/PipeAPI_1.20.1-1.0.0.jar",
+      "path": "META-INF/jarjar/PipeAPI_Forge_1.20.1_1.0.1.jar",
       "isObfuscated": false
     }
   ]
