@@ -79,4 +79,10 @@ public class DTBlockEntity {
     public static final RegistryObject<BlockEntityType<AirPurifierBlockEntity>> AIR_PURIFIER_BE =
             BLOCK_ENTITY_TYPES.register("air_purifier", () -> BlockEntityType.Builder.of(
                     AirPurifierBlockEntity::new, DTBlocks.AIR_PURIFIER.get()).build(null));
+
+    public static RegistryObject<BlockEntityType<MeowMachineBlockEntity>> MEOW_MACHINE_BLOCK_ENTITY = null;
+
+    static {
+
+    }
 }

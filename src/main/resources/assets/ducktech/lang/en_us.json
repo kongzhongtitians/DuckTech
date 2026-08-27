@@ -95,6 +95,8 @@
   "block.ducktech.air_purifier": "Air Purifier",
   "block.ducktech.fe2thermal_essence_machine": "FE to Thermal Essence Machine",
 
+  "block.ducktech.meow_machine": "Meow Machine (Essence Conversion Machine)",
+
   "jei.tooltip.time": "time-consuming",
   "subtitles.ducktech.zaoyin": "Machines: Noises"
 }

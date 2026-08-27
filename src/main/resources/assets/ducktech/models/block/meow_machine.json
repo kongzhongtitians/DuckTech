@@ -1,0 +1,4 @@
+{
+  "parent": "mcmoddoll:block/meow_doll",
+  "render_type": "cutout"
+}
