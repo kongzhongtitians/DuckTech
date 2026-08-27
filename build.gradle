@@ -142,8 +142,14 @@ repositories {
     maven {
         url 'https://maven.blamejared.com'
     }
+    mavenCentral()
+    maven{
+        name = "SimpleMavenRepo"
+        url = "https://raw.githubusercontent.com/yiyuyan/SimpleMavenRepo/refs/heads/master/"
+    }
 }
 
+jarJar.enable()
 dependencies {
     // Specify the version of Minecraft to use.
     // Any artifact can be supplied so long as it has a "userdev" classifier artifact and is a compatible patcher artifact.
@@ -160,6 +166,12 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.20.0.112")
     runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.112")
     implementation 'org.tomlj:tomlj:1.1.0'
+
+    implementation fg.deobf("ducktech:pipe_api:1.20.1forge-1.0.1")
+    implementation fg.deobf("ducktech:recipes_api:1.20.1forge-1.1.0")
+
+    jarJar("ducktech:pipe_api:[1.20.1forge-1.0.1,)")
+    jarJar("ducktech:recipes_api:[1.20.1forge-1.1.0,)")
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-1.20.1-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"
