@@ -167,7 +167,7 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.112")
     implementation 'org.tomlj:tomlj:1.1.0'
 
-    implementation fg.deobf("ducktech:pipe_api:1.20.1forge-1.0.1")
+    implementation fg.deobf("ducktech:pipe_api:1.20.1forge-1.0.2")
     implementation fg.deobf("ducktech:recipes_api:1.20.1forge-1.1.0")
 
     jarJar("ducktech:pipe_api:[1.20.1forge-1.0.1,)")
