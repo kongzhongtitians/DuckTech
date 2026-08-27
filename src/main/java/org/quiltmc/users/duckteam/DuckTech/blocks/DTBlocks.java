@@ -1,8 +1,13 @@
 package org.quiltmc.users.duckteam.DuckTech.blocks;
 
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
+import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.EssenceConversionMachineBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.MeowMachineBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.custom.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -159,6 +164,8 @@ public class DTBlocks {
 
     public static final RegistryObject<Block> AIR_PURIFIER = registerBlock("air_purifier", AirPurifier::new);
 
+    public static RegistryObject<Block> MEOW_MACHINE = null;
+
     public static RegistryObject<Block> registerSimpleBlock(String name, BlockBehaviour.Properties properties) {
         RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(properties));
         DTItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
@@ -175,5 +182,13 @@ public class DTBlocks {
         RegistryObject<Block> block = BLOCKS.register(name, blockSupplier);
         DTItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         return block;
+    }
+
+    static {
+        if(ModList.get().isLoaded("mcmoddoll")){
+            MEOW_MACHINE = registerBlock("meow_machine",MeowMachine::new);
+            DTBlockEntity.MEOW_MACHINE_BLOCK_ENTITY = DTBlockEntity.BLOCK_ENTITY_TYPES.register("meow_machine_block_entity",() -> BlockEntityType.Builder.of(
+                    MeowMachineBlockEntity::new,MEOW_MACHINE.get()).build(null));
+        }
     }
 }

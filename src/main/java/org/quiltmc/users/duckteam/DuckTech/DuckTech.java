@@ -1,9 +1,15 @@
 package org.quiltmc.users.duckteam.DuckTech;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.quiltmc.users.duckteam.DuckTech.blocks.*;
@@ -24,7 +30,11 @@ public class DuckTech {
     {
         DTConfig.register();
         IEventBus modEventBus = context.getModEventBus();
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onConstructMod);
+        modEventBus.addListener(this::onConstructMod);
+
+        if(FMLLoader.getDist().isClient()){
+            modEventBus.addListener(DTClientEvents::onClientSetup);
+        }
 
         LOGGER.info("|----l  |    |  /----  |  / --------- |----  /----  |");
         LOGGER.info("|     | |    | |     l | /      |     |     |     l |");
@@ -47,5 +57,16 @@ public class DuckTech {
     }
     private void onConstructMod(final FMLConstructModEvent event) {
         // 在这里处理 FMLConstructModEvent
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static class DTClientEvents{
+        @OnlyIn(Dist.CLIENT)
+        public static void onClientSetup(FMLClientSetupEvent event){
+            if(DTBlocks.MEOW_MACHINE!=null){
+                ItemBlockRenderTypes.setRenderLayer(DTBlocks.MEOW_MACHINE.get(), RenderType.cutout());
+                LOGGER.info("DuckTech Client Setup.");
+            }
+        }
     }
 }

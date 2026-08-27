@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.quiltmc.users.duckteam.DuckTech.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "ducktech.refmap.json",
+  "mixins": [
+    "BlockEntityAccessor"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

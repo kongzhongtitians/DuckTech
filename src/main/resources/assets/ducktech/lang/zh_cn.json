@@ -96,6 +96,8 @@
   "block.ducktech.fe2thermal_essence_machine": "FE转热力精华机",
   "block.exura.transporter_node": "传输节点",
 
+  "block.ducktech.meow_machine": "喵呜机 (精华转化机)",
+
   "jei.tooltip.time": "耗时",
   "subtitles.ducktech.zaoyin": "机器：噪音"
 }
