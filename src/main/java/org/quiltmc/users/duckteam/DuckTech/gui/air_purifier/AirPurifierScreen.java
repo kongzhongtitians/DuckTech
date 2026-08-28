@@ -1,40 +1,42 @@
 package org.quiltmc.users.duckteam.DuckTech.gui.air_purifier;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import org.quiltmc.users.duckteam.DuckTech.DuckTech;
 
 public class AirPurifierScreen extends AbstractContainerScreen<AirPurifierMenu> {
+    public static final ResourceLocation GUI_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
+            "textures/screen/levitation.png");
 
-    public AirPurifierScreen(AirPurifierMenu menu, Inventory playerInventory, Component title) {
-        super(menu, playerInventory, title);
-        this.imageWidth = 176;
-        this.imageHeight = 166;
+
+    public AirPurifierScreen(AirPurifierMenu p_97741_, Inventory p_97742_, Component p_97743_) {
+        super(p_97741_, p_97742_, p_97743_);
+
+
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-        this.renderBackground(graphics);
-        super.render(graphics, mouseX, mouseY, partialTick);
-        this.renderTooltip(graphics, mouseX, mouseY);
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        this.renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
+
     }
 
     @Override
-    protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
+    protected void renderBg(GuiGraphics guiGraphics, float p_97788_, int p_97789_, int p_97790_) {
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
+
         int x = (this.width - this.imageWidth) / 2;
-        int y = (this.height - this.imageHeight) / 2;
+        int y = (this.height - this.imageHeight) / 2 - 1;
 
-        graphics.fill(x, y, x + this.imageWidth, y + this.imageHeight, 0xFFC6C6C6);
-        graphics.fill(x + 4, y + 4, x + this.imageWidth - 4, y + this.imageHeight - 4, 0xFF8B8B8B);
-
-        // 唯一输入格背景
-        graphics.fill(x + 79, y + 34, x + 97, y + 52, 0xFF373737);
-    }
-
-    @Override
-    protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY, 4210752, false);
-        graphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
+        guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, 256, 256);
     }
 }

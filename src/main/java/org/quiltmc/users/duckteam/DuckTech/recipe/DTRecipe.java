@@ -20,8 +20,7 @@ public class DTRecipe {
     public static final Supplier<RecipeType<ShredderRecipe>> SHREDDER_RECIPE =
             RECIPE_TYPES.register(
                     "shredder_recipe",
-                    // We need the qualifying generic here due to generics being generics.
-                    () -> RecipeType.<ShredderRecipe>simple(ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "shredder_recipe"))
+                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "shredder_recipe"))
             );
 
     public static final Supplier<RecipeType<AdvanceShredderRecipe>> ADVANCE_SHREDDER_RECIPE =

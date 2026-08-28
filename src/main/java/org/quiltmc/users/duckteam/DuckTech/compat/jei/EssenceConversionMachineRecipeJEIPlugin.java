@@ -16,7 +16,6 @@ import org.quiltmc.users.duckteam.DuckTech.recipe.custom.essence_conversion_mach
 
 import java.util.List;
 
-
 @JeiPlugin
 public class EssenceConversionMachineRecipeJEIPlugin implements IModPlugin {
     @Override
@@ -37,12 +36,6 @@ public class EssenceConversionMachineRecipeJEIPlugin implements IModPlugin {
 
         registration.addRecipes(EssenceConversionMachineRecipeCategory.RECIPE_TYPE, allRecipesFor);
     }
-
-//    @Override
-//    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-//        registration.addRecipeClickArea(.class, 70, 30, 25, 22,
-//                ShredderRecipeCategory.RECIPE_TYPE);
-//    }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
