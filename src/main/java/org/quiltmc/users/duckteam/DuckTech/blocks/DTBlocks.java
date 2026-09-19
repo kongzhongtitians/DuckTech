@@ -128,9 +128,10 @@ public class DTBlocks {
             () -> new Block(METAL_OTHER_BLOCK_PROPERTIES));
     public static final RegistryObject<Block> RUBBER_LEAVES = BLOCKS.register("rubber_leaves",
     () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
-        .noOcclusion() 
-        .isViewBlocking((state, world, pos) -> false) 
-        .isSuffocating((state, world, pos) -> false) 
+        .noOcclusion()
+        .isViewBlocking((state, level, pos) -> false)
+        .isSuffocating((state, level, pos) -> false)
+        .forceSolidOff() 
     ));
 
 
