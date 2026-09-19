@@ -126,13 +126,7 @@ public class DTBlocks {
             () -> new Block(METAL_OTHER_BLOCK_PROPERTIES));
     public static final RegistryObject<Block> RUBBER_PLANK = registerBlock("rubber_plank",
             () -> new Block(METAL_OTHER_BLOCK_PROPERTIES));
-    public static final RegistryObject<Block> RUBBER_LEAVES = BLOCKS.register("rubber_leaves",
-    () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
-        .noOcclusion() 
-        .isViewBlocking((state, world, pos) -> false) 
-        .isSuffocating((state, world, pos) -> false) 
-    ));
-
+    public static final RegistryObject<Block> RUBBER_LEAVES = registerBlockLeaves("rubber_leaves",() -> new Block(METAL_OTHER_BLOCK_PROPERTIES));
 
     //机器
     public static final RegistryObject<Block> SHREDDER = registerBlock("shredder"  ,() -> new Shredder(BlockBehaviour.Properties.of()));
@@ -177,13 +171,22 @@ public class DTBlocks {
         return block;
     }
 
-    public static RegistryObject<Block> registerSimpleBlock(String name, BlockBehaviour.Properties properties, Item.Properties itemProperties) {
-        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(properties));
+    public static RegistryObject<Block> registerSimpleBlock(String name, Item.Properties itemProperties) {
+        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
+                .noOcclusion()
+                .isViewBlocking((state, world, pos) -> false)
+                .isSuffocating((state, world, pos) -> false)));
         DTItems.ITEMS.register(name, () -> new BlockItem(block.get(), itemProperties));
         return block;
     }
 
     public static RegistryObject<Block> registerBlock(String name, Supplier<Block> blockSupplier) {
+        RegistryObject<Block> block = BLOCKS.register(name, blockSupplier);
+        DTItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        return block;
+    }
+
+    public static RegistryObject<Block> registerBlockLeaves(String name, Supplier<Block> blockSupplier) {
         RegistryObject<Block> block = BLOCKS.register(name, blockSupplier);
         DTItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         return block;

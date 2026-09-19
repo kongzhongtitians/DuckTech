@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "org/quiltmc/users/duckteam/DuckTech/mixin/BlockEntityAccessor": {
+      "type": "f_58855_:Lnet/minecraft/world/level/block/entity/BlockEntityType;"
+    }
+  },
+  "data": {
+    "searge": {
+      "org/quiltmc/users/duckteam/DuckTech/mixin/BlockEntityAccessor": {
+        "type": "f_58855_:Lnet/minecraft/world/level/block/entity/BlockEntityType;"
+      }
+    }
+  }
+}
