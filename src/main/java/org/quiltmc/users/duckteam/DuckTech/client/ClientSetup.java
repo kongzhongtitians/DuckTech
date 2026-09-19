@@ -6,8 +6,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
-import org.quiltmc.users.duckteam.DuckTech.block.ModBlocks;
+import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlocks; 
 
 @Mod.EventBusSubscriber(
         modid = DuckTech.MODID,
@@ -20,7 +21,7 @@ public class ClientSetup {
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(
-                    ModBlocks.RUBBER_LEAVES.get(),
+                    DTBlocks.RUBBER_LEAVES.get(), 
                     RenderType.cutoutMipped()
             );
         });
