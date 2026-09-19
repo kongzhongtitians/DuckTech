@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ducktech:block/injection_machine"
+    }
+  }
+}
