@@ -25,7 +25,6 @@
   "ducktech:advance_shredder",
   "ducktech:air_essence_collector",
   "ducktech:essence_conversion_machine",
-  "ducktech:essence_furnace",
-  "pipe_api:void_hopper"
+  "ducktech:essence_furnace"
   ]
 }
