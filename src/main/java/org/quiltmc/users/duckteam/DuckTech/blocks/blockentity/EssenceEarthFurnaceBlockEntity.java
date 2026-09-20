@@ -20,7 +20,7 @@ import org.quiltmc.users.duckteam.DuckTech.items.DTItems;
 
 public class EssenceEarthFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     private static final TagKey<Item> ORE_TAG =
-            TagKey.create(Registries.ITEM, new ResourceLocation("forge", "ores"));
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("forge", "ores"));
 
     public EssenceEarthFurnaceBlockEntity(BlockPos pos, BlockState state) {
         super(DTBlockEntity.ESSENCE_EARTH_FURNACE_BLOCK_ENTITY.get(), pos, state, RecipeType.SMELTING);

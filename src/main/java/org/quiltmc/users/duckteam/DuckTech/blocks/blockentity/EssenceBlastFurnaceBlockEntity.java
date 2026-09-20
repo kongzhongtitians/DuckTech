@@ -27,7 +27,7 @@ import org.quiltmc.users.duckteam.DuckTech.sounds.DTSounds;
 
 public class EssenceBlastFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     private static final TagKey<Item> ORE_TAG =
-            TagKey.create(Registries.ITEM, new ResourceLocation("forge", "ores"));
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("forge", "ores"));
 
     private int prevCookTime = 0;
 
