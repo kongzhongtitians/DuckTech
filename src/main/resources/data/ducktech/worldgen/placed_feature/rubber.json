@@ -1,5 +1,5 @@
 {
-  "feature": "duchtech:rubber",
+  "feature": "ducktech:rubber",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",
