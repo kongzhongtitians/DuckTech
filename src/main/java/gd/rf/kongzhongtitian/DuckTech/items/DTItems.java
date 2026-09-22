@@ -79,6 +79,8 @@ public class DTItems {
     public static final RegistryObject<Item> RUBBER_BUCKET = registerSimpleItem("rubber_bucket");
     public static final RegistryObject<Item> YELLOW_RUBBER = registerSimpleItem("yellow_rubber");
     public static final RegistryObject<Item> DUCKTECH = registerSimpleItem("ducktech");
+    public static final RegistryObject<Item> SPEED_UPGRADE = registerSimpleItem("speed_upgrade");
+    public static final RegistryObject<Item> STACK_UPGRADE = registerSimpleItem("stack_upgrade");
 
     //SuLiao
     public static final RegistryObject<Item> PLASTIC_SHEET = registerSimpleItem("plastic_sheet");
@@ -86,11 +88,9 @@ public class DTItems {
 
     //耐久
     public static final RegistryObject<Item> FORGE_HAMMER = ITEMS.register("forge_hammer",
-            () ->
-                    new Item(new Item.Properties().stacksTo(1).durability(64)));
+            () -> new Item(new Item.Properties().stacksTo(1).durability(64)));
     public static final RegistryObject<Item> SACRIFICIAL_KNIFE = ITEMS.register("sacrificial_knife",
-            () ->
-                    new Item(new Item.Properties().stacksTo(1).durability(64)));
+            () -> new Item(new Item.Properties().stacksTo(1).durability(64)));
 
     //盔甲
     /*
