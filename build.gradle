@@ -171,10 +171,10 @@ dependencies {
     implementation 'org.tomlj:tomlj:1.1.0'
 
     implementation fg.deobf("gd.rf.kongzhongtitian:PipeAPI:1.20.1forge-1.0.9")
-    implementation fg.deobf("ducktech:recipes_api:1.20.1forge-1.1.0")
+    implementation fg.deobf("gd.rf.kongzhongtitian:RecipesAPI:1.20.1forge-1.1.1")
 
     jarJar("gd.rf.kongzhongtitian:PipeAPI:[1.20.1forge-1.0.9,)")
-    jarJar("ducktech:recipes_api:[1.20.1forge-1.1.0,)")
+    jarJar("gd.rf.kongzhongtitian:RecipesAPI:[1.20.1forge-1.1.1,)")
 
     runtimeOnly fg.deobf("cn.ksmcbrigade:mcmod-doll:1.0")
 
