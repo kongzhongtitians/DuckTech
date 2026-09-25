@@ -1,7 +1,7 @@
 package gd.rf.kongzhongtitian.DuckTech.client;
 
 import gd.rf.kongzhongtitian.DuckTech.DuckTech;
-import gd.rf.kongzhongtitian.DuckTech.blocks.DTBlocks;
+import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlocks;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;

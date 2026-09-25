@@ -1,16 +1,16 @@
 package gd.rf.kongzhongtitian.DuckTech.recipe;
 
 import gd.rf.kongzhongtitian.DuckTech.DuckTech;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.advanceshredder.AdvanceShredderRecipe;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.advanceshredder.AdvanceShredderRecipeSerializer;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.essence_conversion_machine.EssenceConversionMachineRecipe;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.essence_conversion_machine.EssenceConversionMachineRecipeSerializer;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.injection_machine.InjectionMachineRecipe;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.injection_machine.InjectionMachineRecipeSerializer;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.juice_extractor.JuiceExtractorRecipe;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.juice_extractor.JuiceExtractorRecipeSerializer;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.shredder.ShredderRecipe;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.shredder.ShredderRecipeSerializer;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.advance_shredder.AdvanceShredderRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.advance_shredder.AdvanceShredderRecipeSerializer;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_conversion_machine.EssenceConversionMachineRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_conversion_machine.EssenceConversionMachineRecipeSerializer;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.injection_machine.InjectionMachineRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.injection_machine.InjectionMachineRecipeSerializer;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.juice_extractor.JuiceExtractorRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.juice_extractor.JuiceExtractorRecipeSerializer;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.shredder.ShredderRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.shredder.ShredderRecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

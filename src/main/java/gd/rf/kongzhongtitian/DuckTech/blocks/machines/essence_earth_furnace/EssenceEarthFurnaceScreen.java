@@ -1,0 +1,33 @@
+package gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_earth_furnace;
+
+import gd.rf.kongzhongtitian.DuckTech.items.DTItems;
+import net.minecraft.client.gui.screens.inventory.AbstractFurnaceScreen;
+import net.minecraft.client.gui.screens.recipebook.AbstractFurnaceRecipeBookComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
+
+import java.util.Set;
+
+public class EssenceEarthFurnaceScreen extends AbstractFurnaceScreen<EssenceEarthFurnaceMenu> {
+
+    public EssenceEarthFurnaceScreen(EssenceEarthFurnaceMenu menu, Inventory playerInventory, Component title) {
+        super(menu, new FurnaceRecipeBook(), playerInventory, title,
+                ResourceLocation.parse("textures/gui/container/furnace.png"));
+    }
+
+    static class FurnaceRecipeBook extends AbstractFurnaceRecipeBookComponent {
+
+        @Override
+        public boolean isVisible() {
+            return false;
+        }
+
+        @Override
+        protected Set<Item> getFuelItems() {
+            // 本熔炉唯一可用的燃料
+            return Set.of(DTItems.THERMAL_ESSENCE.get());
+        }
+    }
+}

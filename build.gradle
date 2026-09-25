@@ -101,7 +101,7 @@ minecraft {
 
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
+            //args '--nogui'
         }
 
         // This run config launches GameTestServer and runs all registered gametests, then exits.
@@ -170,10 +170,10 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.112")
     implementation 'org.tomlj:tomlj:1.1.0'
 
-    implementation fg.deobf("gd.rf.kongzhongtitian:PipeAPI:1.20.1forge-1.0.9")
+    implementation fg.deobf("gd.rf.kongzhongtitian:PipeAPI:1.20.1forge-1.0.10")
     implementation fg.deobf("gd.rf.kongzhongtitian:RecipesAPI:1.20.1forge-1.1.1")
 
-    jarJar("gd.rf.kongzhongtitian:PipeAPI:[1.20.1forge-1.0.9,)")
+    jarJar("gd.rf.kongzhongtitian:PipeAPI:[1.20.1forge-1.0.10,)")
     jarJar("gd.rf.kongzhongtitian:RecipesAPI:[1.20.1forge-1.1.1,)")
 
     runtimeOnly fg.deobf("cn.ksmcbrigade:mcmod-doll:1.0")

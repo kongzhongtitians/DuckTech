@@ -15,6 +15,6 @@ public class DTSounds {
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () ->
-                SoundEvent.createVariableRangeEvent(new ResourceLocation("ducktech", name)));
+                SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ducktech", name)));
     }
 }

@@ -1,9 +1,9 @@
 package gd.rf.kongzhongtitian.DuckTech;
 
-import gd.rf.kongzhongtitian.DuckTech.blocks.DTBlockEntity;
-import gd.rf.kongzhongtitian.DuckTech.blocks.DTBlocks;
+import gd.rf.kongzhongtitian.DuckTech.blocks.gui.DTMenu;
+import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlockEntity;
+import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlocks;
 import gd.rf.kongzhongtitian.DuckTech.config.DTConfig;
-import gd.rf.kongzhongtitian.DuckTech.gui.DTMenu;
 import gd.rf.kongzhongtitian.DuckTech.items.DTCreativeTab;
 import gd.rf.kongzhongtitian.DuckTech.items.DTItems;
 import gd.rf.kongzhongtitian.DuckTech.recipe.DTRecipe;

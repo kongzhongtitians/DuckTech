@@ -1,11 +1,11 @@
 package gd.rf.kongzhongtitian.DuckTech.recipe;
 
 import gd.rf.kongzhongtitian.DuckTech.DuckTech;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.advanceshredder.AdvanceShredderRecipe;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.essence_conversion_machine.EssenceConversionMachineRecipe;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.injection_machine.InjectionMachineRecipe;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.juice_extractor.JuiceExtractorRecipe;
-import gd.rf.kongzhongtitian.DuckTech.recipe.custom.shredder.ShredderRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.advance_shredder.AdvanceShredderRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_conversion_machine.EssenceConversionMachineRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.injection_machine.InjectionMachineRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.juice_extractor.JuiceExtractorRecipe;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.shredder.ShredderRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
