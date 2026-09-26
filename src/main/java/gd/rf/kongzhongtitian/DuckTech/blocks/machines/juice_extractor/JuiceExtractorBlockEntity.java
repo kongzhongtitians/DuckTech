@@ -27,14 +27,17 @@ import org.jetbrains.annotations.Nullable;
 
 public class JuiceExtractorBlockEntity extends BlockEntity implements MenuProvider {
 
-    // 槽位索引
-    public static final int SLOT_INPUT = 0;      // 输入：rubber_wood
-    public static final int SLOT_BUCKET = 1;     // 输入：桶
-    public static final int SLOT_OUTPUT = 2;     // 输出：rubber_bucket
+    public static final int SLOT_INPUT  = 0;
+    public static final int SLOT_BUCKET = 1;
+    public static final int SLOT_OUTPUT = 2;
 
-    private static final int MAX_RUBBER = 10000; // 橡胶最大存储量（可调整）
-    private static final int RUBBER_PER_WOOD = 6000; // 每个 rubber_wood 提供的橡胶点
-    private static final int RUBBER_CONSUME_PER_BUCKET = 1000; // 制造一个 rubber_bucket 所需橡胶
+    private static final int MAX_RUBBER = 10000;
+    private static final int RUBBER_PER_WOOD = 6000;
+    private static final int RUBBER_CONSUME_PER_BUCKET = 1000;
+
+    // 为了让 GUI 进度条一类的显示更平稳，可以每个 tick 只加少量，
+    // 也可以一次加完。这里仍然一个 tick 一点，保持原行为。
+    private static final int RUBBER_PER_TICK = 1;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
@@ -45,61 +48,58 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements MenuProvid
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case SLOT_INPUT -> stack.is(Item.byBlock(DTBlocks.RUBBER_WOOD.get()));
-                case SLOT_BUCKET -> stack.is(Items.BUCKET); // 原版桶
-                case SLOT_OUTPUT -> false; // 输出槽不允许手动放入
+                case SLOT_INPUT  -> stack.is(Item.byBlock(DTBlocks.RUBBER_WOOD.get()));
+                case SLOT_BUCKET -> stack.is(Items.BUCKET);
                 default -> false;
             };
         }
     };
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-    private int rubberAmount = 0;          // 当前存储的橡胶点
-    private int remainingFromWood = 0;    // 当前正在加工的 rubber_wood 剩余可产橡胶
+    private int rubberAmount = 0;
+    private int remainingFromWood = 0;
 
     public JuiceExtractorBlockEntity(BlockPos pos, BlockState state) {
         super(DTBlockEntity.JUICE_EXTRACTOR_BLOCK_ENTITY.get(), pos, state);
     }
 
-    // 每 tick 由方块调用，通常在方块实体的 tick 方法中注册
     public static void serverTick(Level level, BlockPos pos, BlockState state, JuiceExtractorBlockEntity be) {
-        if (level.isClientSide) return;
         be.tick();
     }
 
     private void tick() {
-        if (level == null) return;
+        if (level == null || level.isClientSide) return;
 
-        // 1. 从输入槽消耗 rubber_wood 生产橡胶
-        ItemStack inputStack = itemHandler.getStackInSlot(SLOT_INPUT);
-        if (!inputStack.isEmpty()) {
-            if (remainingFromWood <= 0) {
-                // 需要新的 rubber_wood
-                if (rubberAmount < MAX_RUBBER) {
-                    inputStack.shrink(1);
-                    remainingFromWood = RUBBER_PER_WOOD;
-                    setChanged();
-                }
-            }
-            if (remainingFromWood > 0 && rubberAmount < MAX_RUBBER) {
-                rubberAmount++;
-                remainingFromWood--;
-                setChanged();
+        boolean changed = false;
+
+        // ---- 1. 尝试从输入槽取一块木头开始加工 ----
+        if (remainingFromWood <= 0 && rubberAmount < MAX_RUBBER) {
+            ItemStack inputStack = itemHandler.getStackInSlot(SLOT_INPUT);
+            if (!inputStack.isEmpty() && inputStack.is(Item.byBlock(DTBlocks.RUBBER_WOOD.get()))) {
+                inputStack.shrink(1);
+                remainingFromWood = RUBBER_PER_WOOD;
+                changed = true;
             }
         }
 
-        // 2. 如果桶槽有桶且橡胶足够，尝试生产 rubber_bucket
+        // ---- 2. 把剩余橡胶点转到 rubberAmount（与输入槽是否为空无关）----
+        if (remainingFromWood > 0 && rubberAmount < MAX_RUBBER) {
+            int canAdd = Math.min(remainingFromWood, MAX_RUBBER - rubberAmount);
+            int step   = Math.min(canAdd, RUBBER_PER_TICK);
+            rubberAmount += step;
+            remainingFromWood -= step;
+            changed = true;
+        }
+
+        // ---- 3. 有桶且橡胶够时产出 rubber_bucket ----
         ItemStack bucketStack = itemHandler.getStackInSlot(SLOT_BUCKET);
         ItemStack outputStack = itemHandler.getStackInSlot(SLOT_OUTPUT);
 
         if (!bucketStack.isEmpty() && rubberAmount >= RUBBER_CONSUME_PER_BUCKET) {
             ItemStack result = new ItemStack(DTItems.RUBBER_BUCKET.get());
-            boolean canInsert = false;
-            if (outputStack.isEmpty()) {
-                canInsert = true;
-            } else if (outputStack.is(result.getItem()) && outputStack.getCount() + 1 <= outputStack.getMaxStackSize()) {
-                canInsert = true;
-            }
+            boolean canInsert = outputStack.isEmpty()
+                    || (outputStack.is(result.getItem())
+                    && outputStack.getCount() + 1 <= outputStack.getMaxStackSize());
 
             if (canInsert) {
                 rubberAmount -= RUBBER_CONSUME_PER_BUCKET;
@@ -109,8 +109,12 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements MenuProvid
                 } else {
                     outputStack.grow(1);
                 }
-                setChanged();
+                changed = true;
             }
+        }
+
+        if (changed) {
+            setChanged();
         }
     }
 
@@ -152,7 +156,7 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements MenuProvid
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("container.ducktech.juice_extractor");
+        return Component.translatable("block.ducktech.juice_extractor");
     }
 
     @Nullable
@@ -161,24 +165,7 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements MenuProvid
         return new JuiceExtractorMenu(id, playerInventory, this);
     }
 
-    public ItemStackHandler getItemHandler() {
-        return itemHandler;
-    }
-
-    public int getRubberAmount() {
-        return rubberAmount;
-    }
-
-    public int getRemainingFromWood() {
-        return remainingFromWood;
-    }
-
-    // 客户端同步橡胶量用（可选）
-    public void setRubberAmount(int amount) {
-        this.rubberAmount = amount;
-    }
-
-    public void setRemainingFromWood(int remaining) {
-        this.remainingFromWood = remaining;
-    }
+    public ItemStackHandler getItemHandler() { return itemHandler; }
+    public int getRubberAmount() { return rubberAmount; }
+    public int getRemainingFromWood() { return remainingFromWood; }
 }
