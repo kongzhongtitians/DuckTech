@@ -14,7 +14,7 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.juice_extractor.JuiceExtra
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_blast_furnace.EssenceBlastFurnaceScreen;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.expulsion_machine.ExpulsionMachineScreen;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.air_purifier.AirPurifierScreen;
-import gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine.EssenceWeatherMachineScreen;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_weather_instrument.EssenceWeatherMachineScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
