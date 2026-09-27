@@ -79,6 +79,7 @@
   "block.ducktech.rubber_wood" : "Rubber Wood",
   "block.ducktech.rubber_plank" : "Rubber Plank",
   "block.ducktech.rubber_leaves" : "Rubber Leaves",
+  "block.ducktech.rubber_sapling" : "Rubber Sapling",
   "block.ducktech.bedrock_breaker" : "Bedrock Breaker",
   "block.ducktech.thermal_essence_maker" : "Thermal Essence Maker",
   "block.ducktech.frozen_essence_maker" : "Frozen Essence Maker",
@@ -106,12 +107,16 @@
   "block.ducktech.essence_blast_furnace" : "Essence Blast Furnace",
   "block.ducktech.expulsion_machine" : "Expulsion Machine",
   "block.ducktech.air_purifier": "Air Purifier",
+  "block.ducktech.essence_weather_machine": "Essence Weather Instrument",
   "block.ducktech.fe2thermal_essence_machine": "FE to Thermal Essence Machine",
 
   "gui.ducktech.rubber":"Rubber Cache: ",
   "gui.ducktech.remaining":"Rubber that is about to be produced: ",
   "gui.ducktech.mode":"Mode: ",
   "gui.ducktech.progress":"Progress: ",
+  "gui.ducktech.weather.clear": "Clear",
+  "gui.ducktech.weather.rain": "Rain",
+  "gui.ducktech.weather.thunder": "Thunder",
 
   "block.ducktech.meow_machine": "Meow Machine (Essence Conversion Machine)",
 

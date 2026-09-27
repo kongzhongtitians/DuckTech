@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ducktech:block/essence_weather_machine"
+    }
+  }
+}

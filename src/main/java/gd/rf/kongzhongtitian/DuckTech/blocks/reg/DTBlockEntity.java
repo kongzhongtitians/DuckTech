@@ -19,6 +19,7 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.meow_machine.MeowMachineBl
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.shredder.ShredderBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.thermal_essence_maker.ThermalEssenceMakerBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.void_essence_collector.VoidEssenceCollectorBlockEntity;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine.EssenceWeatherMachineBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -95,6 +96,10 @@ public class DTBlockEntity {
     public static final RegistryObject<BlockEntityType<AirPurifierBlockEntity>> AIR_PURIFIER_BE =
             BLOCK_ENTITY_TYPES.register("air_purifier", () -> BlockEntityType.Builder.of(
                     AirPurifierBlockEntity::new, DTBlocks.AIR_PURIFIER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<EssenceWeatherMachineBlockEntity>> ESSENCE_WEATHER_MACHINE_BE =
+            BLOCK_ENTITY_TYPES.register("essence_weather_machine_block_entity", () -> BlockEntityType.Builder.of(
+                    EssenceWeatherMachineBlockEntity::new, DTBlocks.ESSENCE_WEATHER_MACHINE.get()).build(null));
 
     public static RegistryObject<BlockEntityType<MeowMachineBlockEntity>> MEOW_MACHINE_BLOCK_ENTITY = null;
 

@@ -18,6 +18,7 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.juice_extractor.JuiceExtra
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.levitation_machine.LevitationMachineMenu;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.thermal_essence_maker.ThermalEssenceMakerBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.thermal_essence_maker.ThermalEssenceMakerMenu;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine.EssenceWeatherMachineMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -109,4 +110,9 @@ public class DTMenu {
             MENUS.register("air_purifier",
                     () -> IForgeMenuType.create((windowId, inv, data) ->
                             new AirPurifierMenu(windowId, inv, data.readBlockPos())));
+
+    public static final RegistryObject<MenuType<EssenceWeatherMachineMenu>> ESSENCE_WEATHER_MACHINE_MENU =
+            MENUS.register("essence_weather_machine",
+                    () -> IForgeMenuType.create((windowId, inv, data) ->
+                            new EssenceWeatherMachineMenu(windowId, inv, data.readBlockPos())));
 }

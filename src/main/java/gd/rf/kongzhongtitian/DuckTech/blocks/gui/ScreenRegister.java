@@ -14,6 +14,7 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.juice_extractor.JuiceExtra
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_blast_furnace.EssenceBlastFurnaceScreen;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.expulsion_machine.ExpulsionMachineScreen;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.air_purifier.AirPurifierScreen;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine.EssenceWeatherMachineScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,6 +39,7 @@ public class ScreenRegister {
             MenuScreens.register(DTMenu.ESSENCE_BLAST_FURNACE_MENU.get(), EssenceBlastFurnaceScreen::new);
             MenuScreens.register(DTMenu.EXPULSION_MACHINE.get(), ExpulsionMachineScreen::new);
             MenuScreens.register(DTMenu.AIR_PURIFIER_MENU.get(), AirPurifierScreen::new);
+            MenuScreens.register(DTMenu.ESSENCE_WEATHER_MACHINE_MENU.get(), EssenceWeatherMachineScreen::new);
         });
     }
 }

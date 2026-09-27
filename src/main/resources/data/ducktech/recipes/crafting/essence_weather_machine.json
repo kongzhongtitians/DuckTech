@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "ABA",
+    "DDD"
+  ],
+  "key": {
+    "A": {
+      "item": "ducktech:air_essence"
+    },
+    "B": {
+      "item": "ducktech:machine_casing"
+    },
+    "C": {
+      "item": "minecraft:compass"
+    },
+    "D": {
+      "item": "ducktech:bronze_plate"
+    }
+  },
+  "result": {
+    "item": "ducktech:essence_weather_machine"
+  }
+}

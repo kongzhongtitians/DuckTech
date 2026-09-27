@@ -19,6 +19,8 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.meow_machine.*;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.shredder.Shredder;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.thermal_essence_maker.ThermalEssenceMaker;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.void_essence_collector.VoidEssenceCollector;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine.EssenceWeatherMachine;
+import gd.rf.kongzhongtitian.DuckTech.blocks.rubber_sapling.RubberSaplingBlock;
 import gd.rf.kongzhongtitian.DuckTech.items.DTItems;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -145,8 +147,10 @@ public class DTBlocks {
         .noOcclusion()
         .isViewBlocking((state, level, pos) -> false)
         .isSuffocating((state, level, pos) -> false)
-        .forceSolidOff() 
+        .forceSolidOff()
     ));
+
+    public static final RegistryObject<Block> RUBBER_SAPLING = registerBlock("rubber_sapling", RubberSaplingBlock::new);
 
 
     //机器
@@ -183,6 +187,8 @@ public class DTBlocks {
     public static final RegistryObject<Block> EXPULSION_MACHINE = registerBlock("expulsion_machine", () -> new ExpulsionMachine(BlockBehaviour.Properties.of()));
 
     public static final RegistryObject<Block> AIR_PURIFIER = registerBlock("air_purifier", AirPurifier::new);
+
+    public static final RegistryObject<Block> ESSENCE_WEATHER_MACHINE = registerBlock("essence_weather_machine", EssenceWeatherMachine::new);
 
     public static RegistryObject<Block> MEOW_MACHINE = null;
 

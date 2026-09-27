@@ -96,6 +96,7 @@
   "block.ducktech.rubber_wood" : "橡胶木",
   "block.ducktech.rubber_plank" : "橡胶木板",
   "block.ducktech.rubber_leaves" : "橡胶树叶",
+  "block.ducktech.rubber_sapling" : "橡胶树苗",
   "block.ducktech.bedrock_breaker" : "基岩破坏器",
   "block.ducktech.thermal_essence_maker" : "热力精华制造机",
   "block.ducktech.frozen_essence_maker" : "冷冻精华制造器",
@@ -106,12 +107,16 @@
   "block.ducktech.essence_blast_furnace" : "精华高炉",
   "block.ducktech.expulsion_machine" : "驱逐器",
   "block.ducktech.air_purifier": "空气净化器",
+  "block.ducktech.essence_weather_machine": "精华气象仪",
   "block.ducktech.fe2thermal_essence_machine": "FE转热力精华机",
 
   "gui.ducktech.rubber":"橡胶缓存: ",
   "gui.ducktech.remaining":"将要生成的橡胶: ",
   "gui.ducktech.mode":"模式: ",
   "gui.ducktech.progress":"进度: ",
+  "gui.ducktech.weather.clear": "晴",
+  "gui.ducktech.weather.rain": "雨",
+  "gui.ducktech.weather.thunder": "雷暴",
 
   "block.ducktech.meow_machine": "喵呜机 (精华转化机)",
 
