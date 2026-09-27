@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "ducktech:lead_ore",
+    "ducktech:aluminum_ore",
+    "ducktech:tin_ore",
+    "ducktech:silver_ore",
+    "ducktech:deepslate_lead_ore",
+    "ducktech:deepslate_aluminum_ore",
+    "ducktech:deepslate_tin_ore",
+    "ducktech:deepslate_silver_ore",
+    "ducktech:lead_block",
+    "ducktech:aluminum_block",
+    "ducktech:tin_block",
+    "ducktech:silver_block",
+    "ducktech:bronze_block",
+    "ducktech:raw_lead_block",
+    "ducktech:raw_aluminum_block",
+    "ducktech:raw_tin_block",
+    "ducktech:raw_silver_block"
+  ]
+}
