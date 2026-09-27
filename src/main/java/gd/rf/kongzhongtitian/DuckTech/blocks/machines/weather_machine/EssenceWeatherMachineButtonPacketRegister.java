@@ -10,7 +10,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 @Mod.EventBusSubscriber(modid = DuckTech.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public final class WeatherMachineButtonPacketRegister {
+public final class EssenceWeatherMachineButtonPacketRegister {
 
     private static final String PROTOCOL_VERSION = "1";
 
@@ -21,17 +21,17 @@ public final class WeatherMachineButtonPacketRegister {
             PROTOCOL_VERSION::equals
     );
 
-    private WeatherMachineButtonPacketRegister() {
+    private EssenceWeatherMachineButtonPacketRegister() {
     }
 
     @SubscribeEvent
     public static void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             int id = 0;
-            CHANNEL.messageBuilder(WeatherMachineButtonPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
-                    .encoder(WeatherMachineButtonPacket::encode)
-                    .decoder(WeatherMachineButtonPacket::new)
-                    .consumerMainThread(WeatherMachineButtonPacket::handle)
+            CHANNEL.messageBuilder(EssenceWeatherMachineButtonPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                    .encoder(EssenceWeatherMachineButtonPacket::encode)
+                    .decoder(EssenceWeatherMachineButtonPacket::new)
+                    .consumerMainThread(EssenceWeatherMachineButtonPacket::handle)
                     .add();
         });
     }

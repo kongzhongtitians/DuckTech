@@ -55,8 +55,8 @@ public class EssenceWeatherMachineScreen extends AbstractContainerScreen<Essence
     private void sendWeather(int mode) {
         EssenceWeatherMachineBlockEntity be = this.menu.getBlockEntity();
         if (be != null) {
-            WeatherMachineButtonPacketRegister.CHANNEL.sendToServer(
-                    new WeatherMachineButtonPacket(be.getBlockPos(), mode));
+            EssenceWeatherMachineButtonPacketRegister.CHANNEL.sendToServer(
+                    new EssenceWeatherMachineButtonPacket(be.getBlockPos(), mode));
         }
     }
 
