@@ -2,9 +2,11 @@ package gd.rf.kongzhongtitian.DuckTech.client;
 
 import gd.rf.kongzhongtitian.DuckTech.DuckTech;
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlocks;
+import gd.rf.kongzhongtitian.DuckTech.entities.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -15,6 +17,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
         bus = Mod.EventBusSubscriber.Bus.MOD
 )
 public class ClientSetup {
+    @SubscribeEvent
+    public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(DTEntities.RUBBER_DUCK.get(), RubberDuckRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(RubberDuckModel.LAYER_LOCATION, RubberDuckModel::createBodyLayer);
+    }
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {

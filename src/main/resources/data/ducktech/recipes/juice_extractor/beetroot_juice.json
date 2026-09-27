@@ -2,16 +2,16 @@
   "type": "ducktech:juice_extractor",
   "input": [
     {
-      "item": "ducktech:rubber",
-      "count": 4
+      "item": "minecraft:beetroot",
+      "count": 1
     },
     {
-      "item": "minecraft:bucket"
+      "item": "minecraft:glass_bottle"
     }
   ],
   "output": [
     {
-      "item": "ducktech:rubber_bucket",
+      "item": "ducktech:beetroot_juice",
       "count": 1
     }
   ],

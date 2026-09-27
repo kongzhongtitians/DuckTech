@@ -4,6 +4,7 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.gui.DTMenu;
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlocks;
 import gd.rf.kongzhongtitian.DuckTech.config.DTConfig;
+import gd.rf.kongzhongtitian.DuckTech.entities.DTEntities;
 import gd.rf.kongzhongtitian.DuckTech.items.DTCreativeTab;
 import gd.rf.kongzhongtitian.DuckTech.items.DTItems;
 import gd.rf.kongzhongtitian.DuckTech.recipe.DTRecipe;
@@ -51,6 +52,7 @@ public class DuckTech {
         DTCreativeTab.CREATIVE_TABS.register(modEventBus);
         DTSounds.SOUND_EVENTS.register(modEventBus);
         DTBlocks.BLOCKS.register(modEventBus);
+        DTEntities.ENTITY_TYPES.register(modEventBus);
         DTItems.ITEMS.register(modEventBus);
         DTBlockEntity.BLOCK_ENTITY_TYPES.register(modEventBus);
         DTRecipe.RECIPE_TYPES.register(modEventBus);

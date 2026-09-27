@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ducktech:item/cocoa_bean_juice"
+  }
+}

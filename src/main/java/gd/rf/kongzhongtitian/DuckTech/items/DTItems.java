@@ -1,7 +1,11 @@
 package gd.rf.kongzhongtitian.DuckTech.items;
 
 import gd.rf.kongzhongtitian.DuckTech.DuckTech;
+import gd.rf.kongzhongtitian.DuckTech.entities.DTEntities;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -74,7 +78,10 @@ public class DTItems {
     public static final RegistryObject<Item> BASIC_ESSENCE_PLATE = registerSimpleItem("basic_essence_plate");
 
     //other
-    public static final RegistryObject<Item> RUBBER_DUCK = registerSimpleItem("rubber_duck");
+    public static final RegistryObject<ForgeSpawnEggItem> RUBBER_DUCK =
+            ITEMS.register("rubber_duck",
+                    () -> new ForgeSpawnEggItem(DTEntities.RUBBER_DUCK, 0xFFFFFF, 0xFFFFFF,
+                            new Item.Properties()));
     public static final RegistryObject<Item> RUBBER = registerSimpleItem("rubber");
     public static final RegistryObject<Item> RUBBER_BUCKET = ITEMS.register("rubber_bucket",
             () -> new Item(new Item.Properties().stacksTo(1)));
@@ -92,6 +99,104 @@ public class DTItems {
             () -> new Item(new Item.Properties().stacksTo(1).durability(64)));
     public static final RegistryObject<Item> SACRIFICIAL_KNIFE = ITEMS.register("sacrificial_knife",
             () -> new Item(new Item.Properties().stacksTo(1).durability(64)));
+
+    //food
+    public static final RegistryObject<Item> DUCK_JUICE = ITEMS.register("duck_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> APPLE_JUICE = ITEMS.register("apple_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> BAMBOO_JUICE = ITEMS.register("bamboo_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> PUMPKIN_JUICE = ITEMS.register("pumpkin_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> WATERMELON_JUICE = ITEMS.register("watermelon_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> EGG_JUICE = ITEMS.register("egg_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> KELP_JUICE = ITEMS.register("kelp_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> COCOA_BEAN_JUICE = ITEMS.register("cocoa_bean_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> SUGAR_CANE_JUICE = ITEMS.register("sugar_cane_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> WHEAT_JUICE = ITEMS.register("wheat_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> BEETROOT_JUICE = ITEMS.register("beetroot_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
+    public static final RegistryObject<Item> POTATO_JUICE = ITEMS.register("potato_juice",
+            () -> new JuiceItem(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
+                            .saturationMod(0.5F)
+                            .alwaysEat()
+                            .build())));
 
     //盔甲
     /*
