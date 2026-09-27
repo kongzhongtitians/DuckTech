@@ -16,12 +16,10 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -74,42 +72,27 @@ public class JuiceExtractorRecipeCategory implements IRecipeCategory<JuiceExtrac
 
     @Override
     public void setRecipe(@NotNull IRecipeLayoutBuilder iRecipeLayoutBuilder, JuiceExtractorRecipe recipe, IFocusGroup iFocusGroup) {
-        NonNullList<Ingredient> ingredients = recipe.getIngredients();
         List<CountedIngredient> inputs = recipe.getInputs();
-
-        if (ingredients.size() == 1){
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 44,34).addItemStack(inputs.get(0).createItemStack()).setBackground(slot.build(),-1,-1);
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 65,34).addItemStack(Items.AIR.getDefaultInstance()).setBackground(slot.build(),-1,-1);
-        }else if (ingredients.size() == 2){
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 44,34).addItemStack(inputs.get(0).createItemStack()).setBackground(slot.build(),-1,-1);
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 65,34).addItemStack(inputs.get(1).createItemStack()).setBackground(slot.build(),-1,-1);
-        }
-
-        // 获取所有输出
         List<ItemStack> outputs = recipe.getOutputs();
 
-        // 根据输出数量动态布局
-        if (outputs.size() == 1) {
-            // 单个输出 - 居中显示
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT, 108, 34).setBackground(slot.build(),-1,-1)
-                    .addItemStack(outputs.get(0));
+        int inputCount = Math.min(inputs.size(), 2);
+        for (int i = 0; i < inputCount; i++) {
+            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 44 + i * 21, 34)
+                    .addItemStack(inputs.get(i).createItemStack())
+                    .setBackground(slot.build(), -1, -1);
+        }
+        if (inputCount == 1) {
+            // 单输入配方时，第二个输入位留空占位
+            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 65, 34)
+                    .addItemStack(Items.AIR.getDefaultInstance())
+                    .setBackground(slot.build(), -1, -1);
+        }
 
-        } else if (outputs.size() == 2) {
-            // 两个输出 - 上下排列
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT, 108, 25).setBackground(slot.build(),-1,-1)
-                    .addItemStack(outputs.get(0));
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT, 128, 25).setBackground(slot.build(),-1,-1)
-                    .addItemStack(outputs.get(1));
-
-        } else if (outputs.size() == 3) {
-            // 三个输出 - 三角形排列
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT, 108, 25).setBackground(slot.build(),-1,-1)  // 上
-                    .addItemStack(outputs.get(0));
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT, 98, 43) .setBackground(slot.build(),-1,-1)  // 左下
-                    .addItemStack(outputs.get(1));
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT, 118, 43) .setBackground(slot.build(),-1,-1) // 右下
-                    .addItemStack(outputs.get(2));
-
+        // 单输出
+        if (!outputs.isEmpty()) {
+            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT, 108, 34)
+                    .addItemStack(outputs.get(0))
+                    .setBackground(slot.build(), -1, -1);
         }
     }
 

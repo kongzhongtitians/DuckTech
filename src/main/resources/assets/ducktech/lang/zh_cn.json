@@ -79,7 +79,7 @@
   "item.ducktech.basic_essence_dust": "基础精华粉",
   "item.ducktech.basic_essence_mesh": "基础精华网",
   "item.ducktech.basic_essence_plate": "基础精华板",
-  "item.ducktech.rubber_bucket": "橡胶",
+  "item.ducktech.rubber_bucket": "橡胶桶",
   "block.ducktech.injection_machine" : "鸭鸭注射机",
   "block.ducktech.rubber_wood" : "橡胶木",
   "block.ducktech.rubber_plank" : "橡胶木板",
@@ -95,7 +95,11 @@
   "block.ducktech.expulsion_machine" : "驱逐器",
   "block.ducktech.air_purifier": "空气净化器",
   "block.ducktech.fe2thermal_essence_machine": "FE转热力精华机",
-  "block.exura.transporter_node": "传输节点",
+
+  "gui.ducktech.rubber":"橡胶缓存: ",
+  "gui.ducktech.remaining":"将要生成的橡胶: ",
+  "gui.ducktech.mode":"模式: ",
+  "gui.ducktech.progress":"进度: ",
 
   "block.ducktech.meow_machine": "喵呜机 (精华转化机)",
 

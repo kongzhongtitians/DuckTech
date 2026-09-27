@@ -3,6 +3,7 @@ package gd.rf.kongzhongtitian.DuckTech.blocks.machines.juice_extractor;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -30,9 +31,17 @@ public class JuiceExtractorScreen extends AbstractContainerScreen<JuiceExtractor
 
         int rubber    = this.menu.getRubberAmount();
         int remaining = this.menu.getRemainingFromWood();
+        int progress  = this.menu.getRecipeProgress();
+        int maxProgress = this.menu.getRecipeMaxProgress();
+        int mode      = this.menu.getMode();
+        MutableComponent ru=Component.translatable("gui.ducktech.rubber").append(rubber+" mB");
 
-        guiGraphics.drawString(this.font, "Rubber: "    + rubber,    8,  16, 0x404040, false);
-        guiGraphics.drawString(this.font, "Remaining: " + remaining, 8, 26, 0x404040, false);
+        guiGraphics.drawString(this.font, ru,    8, 16, 0x404040, false);
+        guiGraphics.drawString(this.font,Component.translatable("gui.ducktech.remaining").append(remaining+" mB"), 8, 26, 0x404040, false);
+        if (maxProgress > 0) {
+            guiGraphics.drawString(this.font,Component.translatable("gui.ducktech.progress").append(progress+" / "+maxProgress+" tick"), 8, 36, 0x404040, false);
+        }
+        guiGraphics.drawString(this.font, Component.translatable("gui.ducktech.mode").append(mode == JuiceExtractorBlockEntity.MODE_LEGACY ? "Rubber" : "Recipe"), 8, 46, 0x404040, false);
     }
 
     @Override

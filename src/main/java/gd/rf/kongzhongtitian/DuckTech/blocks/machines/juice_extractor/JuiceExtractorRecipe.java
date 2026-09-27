@@ -17,7 +17,7 @@ public class JuiceExtractorRecipe extends InputOutputRecipe {
 
     public JuiceExtractorRecipe(List<CountedIngredient> inputs, List<ItemStack> outputs,
                                 ResourceLocation id, int processingTime) {
-        super(inputs, outputs, id, 2, 3); // 最多2个输入，最多3个输出
+        super(inputs, outputs, id, 2, 1); // 最多2个输入，最多1个输出
         this.processingTime = processingTime;
     }
 

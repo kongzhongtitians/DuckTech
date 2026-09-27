@@ -24,6 +24,9 @@ public class JuiceExtractorMenu extends AbstractContainerMenu {
     // 客户端缓存（由 Forge 通过 ClientboundContainerSetDataPacket 填充）
     private int clientRubberAmount;
     private int clientRemainingFromWood;
+    private int clientRecipeProgress;
+    private int clientRecipeMaxProgress;
+    private int clientMode;
 
     private final ContainerData data = new ContainerData() {
         @Override
@@ -34,6 +37,9 @@ public class JuiceExtractorMenu extends AbstractContainerMenu {
                 return switch (index) {
                     case 0 -> blockEntity.getRubberAmount();
                     case 1 -> blockEntity.getRemainingFromWood();
+                    case 2 -> blockEntity.getRecipeProgress();
+                    case 3 -> blockEntity.getRecipeMaxProgress();
+                    case 4 -> blockEntity.getMode();
                     default -> 0;
                 };
             }
@@ -41,6 +47,9 @@ public class JuiceExtractorMenu extends AbstractContainerMenu {
             return switch (index) {
                 case 0 -> clientRubberAmount;
                 case 1 -> clientRemainingFromWood;
+                case 2 -> clientRecipeProgress;
+                case 3 -> clientRecipeMaxProgress;
+                case 4 -> clientMode;
                 default -> 0;
             };
         }
@@ -51,12 +60,15 @@ public class JuiceExtractorMenu extends AbstractContainerMenu {
             switch (index) {
                 case 0 -> clientRubberAmount = value;
                 case 1 -> clientRemainingFromWood = value;
+                case 2 -> clientRecipeProgress = value;
+                case 3 -> clientRecipeMaxProgress = value;
+                case 4 -> clientMode = value;
             }
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 5;
         }
     };
 
@@ -99,6 +111,18 @@ public class JuiceExtractorMenu extends AbstractContainerMenu {
         return this.data.get(1);
     }
 
+    public int getRecipeProgress() {
+        return this.data.get(2);
+    }
+
+    public int getRecipeMaxProgress() {
+        return this.data.get(3);
+    }
+
+    public int getMode() {
+        return this.data.get(4);
+    }
+
     public JuiceExtractorBlockEntity getBlockEntity() {
         return blockEntity;
     }
@@ -125,7 +149,10 @@ public class JuiceExtractorMenu extends AbstractContainerMenu {
                         return ItemStack.EMPTY;
                     }
                 } else {
-                    return ItemStack.EMPTY;
+                    // 配方输入：尝试放入任意输入槽，由槽位 isItemValid 把关
+                    if (!this.moveItemStackTo(stack, 0, 2, false)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
             }
 

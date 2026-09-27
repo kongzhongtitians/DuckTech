@@ -2,7 +2,8 @@
   "type": "ducktech:juice_extractor",
   "input": [
     {
-      "item": "ducktech:rubber_wood"
+      "item": "ducktech:rubber",
+      "count": 4
     },
     {
       "item": "minecraft:bucket"
@@ -14,5 +15,5 @@
       "count": 1
     }
   ],
-  "processingTime": 1000
+  "processingTime": 20
 }

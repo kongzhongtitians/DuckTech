@@ -8,7 +8,7 @@ public class JuiceExtractorRecipeSerializer extends InputOutputRecipeSerializer<
     public static final JuiceExtractorRecipeSerializer INSTANCE = new JuiceExtractorRecipeSerializer();
 
     public JuiceExtractorRecipeSerializer() {
-        super(data -> new JuiceExtractorRecipe(data.inputs, data.outputs, data.id, data.processingTime), 2, 3);
+        super(data -> new JuiceExtractorRecipe(data.inputs, data.outputs, data.id, data.processingTime), 2, 1);
     }
 
     //如果需要自定义处理时间默认值，可以重写该方法

@@ -96,6 +96,11 @@
   "block.ducktech.air_purifier": "Air Purifier",
   "block.ducktech.fe2thermal_essence_machine": "FE to Thermal Essence Machine",
 
+  "gui.ducktech.rubber":"Rubber Cache: ",
+  "gui.ducktech.remaining":"Rubber that is about to be produced: ",
+  "gui.ducktech.mode":"Mode: ",
+  "gui.ducktech.progress":"Progress: ",
+
   "block.ducktech.meow_machine": "Meow Machine (Essence Conversion Machine)",
 
   "jei.tooltip.time": "time-consuming",
