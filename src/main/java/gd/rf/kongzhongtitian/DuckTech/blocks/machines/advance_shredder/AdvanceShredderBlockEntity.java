@@ -93,8 +93,9 @@ public class AdvanceShredderBlockEntity extends DTBaseProcessingBlockEntity impl
 
     private <T extends InputOutputRecipe> void craftItem(T recipe){
 
-        RecipeOutputUtil.consumeInputs(recipe, itemStackHandler, List.of(0,1));
-
+        if (!RecipeOutputUtil.consumeInputs(recipe, itemStackHandler, List.of(0,1))) {
+            return; // 原料被抽走/不足时不产出，防止无消耗出货
+        }
         RecipeOutputUtil.produceOutputs(recipe.getOutputs(), itemStackHandler, List.of(2,3,4));
 
     }

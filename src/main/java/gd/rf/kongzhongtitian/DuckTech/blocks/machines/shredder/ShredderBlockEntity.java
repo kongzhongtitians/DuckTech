@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -86,28 +87,62 @@ public class ShredderBlockEntity extends BlockEntity {
     private void completeProcessing(Level level, BlockPos pos) {
         if (currentRecipe == null || matchedEntities == null) return;
 
-        consumeInputs(level, matchedEntities, currentRecipe);
+        // 只结算仍然存活的物品实体（加工期间玩家可能捡走、或实体已合并/消失）
+        List<ItemEntity> aliveEntities = matchedEntities.stream()
+                .filter(e -> e != null && e.isAlive())
+                .collect(Collectors.toList());
+
+        // 重新按无序方式校验并消耗输入；缺料则本次不产出，防止“捡回原料仍出货”
+        if (!consumeInputs(level, aliveEntities, currentRecipe)) {
+            return;
+        }
 
         spawnOutputs(level, pos, currentRecipe);
     }
 
-    private void consumeInputs(Level level, List<ItemEntity> entities, ShredderRecipe recipe) {
+    private boolean consumeInputs(Level level, List<ItemEntity> entities, ShredderRecipe recipe) {
         List<CountedIngredient> inputs = recipe.getInputs();
 
-        for (int i = 0; i < Math.min(inputs.size(), entities.size()); i++) {
-            ItemEntity entity = entities.get(i);
-            if (entity != null && entity.isAlive()) {
-                ItemStack stack = entity.getItem();
-                int countToConsume = inputs.get(i).count();
-                stack.shrink(countToConsume);
+        // 先用每个存活实体当前物品的副本做一次完整校验（无序贪心）
+        List<ItemStack> copies = new ArrayList<>();
+        for (ItemEntity e : entities) {
+            copies.add(e.getItem().copy());
+        }
+        for (CountedIngredient required : inputs) {
+            int remaining = required.count();
+            for (ItemStack copy : copies) {
+                if (remaining <= 0) break;
+                if (required.ingredient().test(copy)) {
+                    int take = Math.min(copy.getCount(), remaining);
+                    copy.shrink(take);
+                    remaining -= take;
+                }
+            }
+            if (remaining > 0) {
+                return false; // 原料不足，不产出
+            }
+        }
 
-                if (stack.isEmpty()) {
-                    entity.discard();
-                } else {
-                    entity.setItem(stack);
+        // 校验通过后，按相同顺序在真实实体上扣减
+        for (CountedIngredient required : inputs) {
+            int remaining = required.count();
+            for (int i = 0; i < entities.size() && remaining > 0; i++) {
+                ItemEntity entity = entities.get(i);
+                if (entity == null || !entity.isAlive()) continue;
+                ItemStack stack = entity.getItem();
+                if (required.ingredient().test(stack)) {
+                    int take = Math.min(stack.getCount(), remaining);
+                    stack.shrink(take);
+                    remaining -= take;
+                    if (stack.isEmpty()) {
+                        entity.discard();
+                    } else {
+                        entity.setItem(stack);
+                    }
                 }
             }
         }
+        return true;
     }
 
     private void spawnOutputs(Level level, BlockPos pos, ShredderRecipe recipe) {

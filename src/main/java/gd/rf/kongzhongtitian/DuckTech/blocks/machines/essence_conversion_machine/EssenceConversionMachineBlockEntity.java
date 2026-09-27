@@ -74,7 +74,9 @@ public class EssenceConversionMachineBlockEntity extends DTBaseProcessingBlockEn
     }
 
     private <T extends InputOutputRecipe> void craftItem(T recipe) {
-        RecipeOutputUtil.consumeInputs(recipe, itemStackHandler, List.of(INPUT_SLOT_1, INPUT_SLOT_2));
+        if (!RecipeOutputUtil.consumeInputs(recipe, itemStackHandler, List.of(INPUT_SLOT_1, INPUT_SLOT_2))) {
+            return;
+        }
         RecipeOutputUtil.produceOutputs(recipe.getOutputs(), itemStackHandler, List.of(2));
     }
 

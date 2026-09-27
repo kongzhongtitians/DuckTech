@@ -18,10 +18,13 @@ import java.util.UUID;
 @Mod.EventBusSubscriber
 public class ReplacerHandler {
 
+    /**
+     * 头盔物品引用。DTItems 中对应盔甲注册块目前被注释（未启用），
+     * 因此这里保持 null；下面会做空守卫，启用盔甲后在此赋值即可。
+     */
     public static RegistryObject<Item> BASIC_ESSENCE_HELMET_LEVEL_TWO;
     public static RegistryObject<Item> BASIC_ESSENCE_HELMET_LEVEL_ONE;
     public static RegistryObject<Item> BASIC_ESSENCE_HELMET_LEVEL_THREE;
-
 
     // 冷却机制，防止每tick都执行（可选）
     private static final Map<UUID, Integer> COOLDOWN_MAP = new HashMap<>();
@@ -37,6 +40,13 @@ public class ReplacerHandler {
 
         // 只在服务器端执行
         if (player.level().isClientSide) {
+            return;
+        }
+
+        // 头盔物品尚未注册时直接跳过，避免对 null 字段调用 .get() 导致 NPE
+        if (BASIC_ESSENCE_HELMET_LEVEL_ONE == null
+                || BASIC_ESSENCE_HELMET_LEVEL_TWO == null
+                || BASIC_ESSENCE_HELMET_LEVEL_THREE == null) {
             return;
         }
 

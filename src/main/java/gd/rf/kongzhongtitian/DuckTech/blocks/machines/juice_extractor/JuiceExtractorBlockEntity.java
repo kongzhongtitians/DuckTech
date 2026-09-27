@@ -191,7 +191,9 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements MenuProvid
     }
 
     private void craftItem(JuiceExtractorRecipe recipe) {
-        RecipeOutputUtil.consumeInputs(recipe, itemHandler, List.of(SLOT_INPUT, SLOT_BUCKET));
+        if (!RecipeOutputUtil.consumeInputs(recipe, itemHandler, List.of(SLOT_INPUT, SLOT_BUCKET))) {
+            return;
+        }
         RecipeOutputUtil.produceOutputs(recipe.getOutputs(), itemHandler, List.of(SLOT_OUTPUT));
     }
 

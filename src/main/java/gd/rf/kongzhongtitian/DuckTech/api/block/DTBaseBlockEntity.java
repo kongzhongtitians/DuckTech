@@ -1,6 +1,7 @@
 package gd.rf.kongzhongtitian.DuckTech.api.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -22,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
  */
 public abstract class DTBaseBlockEntity extends BlockEntity  {
     public ItemStackHandler itemStackHandler;
+
+    /** 缓存的物品处理器 capability，避免每次新建 LazyOptional；卸载时统一 invalidate */
+    private LazyOptional<IItemHandler> itemHandlerCap = LazyOptional.empty();
 
     public DTBaseBlockEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
         super(p_155228_, p_155229_, p_155230_);
@@ -58,11 +63,25 @@ public abstract class DTBaseBlockEntity extends BlockEntity  {
 
 
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER){
-            return  LazyOptional.of(() -> itemStackHandler).cast();
+    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER && itemStackHandler != null) {
+            return itemHandlerCap.cast();
         }
-        return super.getCapability(cap);
+        return super.getCapability(cap, side);
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (itemStackHandler != null && !itemHandlerCap.isPresent()) {
+            itemHandlerCap = LazyOptional.of(() -> itemStackHandler);
+        }
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        itemHandlerCap.invalidate();
     }
 
     @Override
