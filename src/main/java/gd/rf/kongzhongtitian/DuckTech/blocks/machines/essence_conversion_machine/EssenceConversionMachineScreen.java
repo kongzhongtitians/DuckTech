@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class EssenceConversionMachineScreen extends AbstractContainerScreen<EssenceConversionMachineMenu> {
     public static final ResourceLocation GUI_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
-            "textures/screen/ecm.png");
+            "textures/screen/essence_conversion_machine.png");
     public static final ResourceLocation ARROW_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
             "textures/screen/arrow_progress.png");
 

@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class LevitationMachineScreen extends AbstractContainerScreen<LevitationMachineMenu> {
     public static final ResourceLocation GUI_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
-            "textures/screen/levitation.png");
+            "textures/screen/levitation_machine.png");
 
 
     public LevitationMachineScreen(LevitationMachineMenu p_97741_, Inventory p_97742_, Component p_97743_) {

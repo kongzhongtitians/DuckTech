@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class ExpulsionMachineScreen extends AbstractContainerScreen<ExpulsionMachineMenu> {
     private static final ResourceLocation TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/em.png");
+            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/expulsion_machine.png");
 
     public ExpulsionMachineScreen(ExpulsionMachineMenu menu, Inventory playerInv, Component title) {
         super(menu, playerInv, title);

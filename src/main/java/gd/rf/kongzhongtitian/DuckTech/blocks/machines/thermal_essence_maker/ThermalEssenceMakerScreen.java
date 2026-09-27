@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class ThermalEssenceMakerScreen extends AbstractContainerScreen<ThermalEssenceMakerMenu> {
     private static final ResourceLocation TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/tem.png");
+            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/thermal_essence_maker.png");
 
     public ThermalEssenceMakerScreen(ThermalEssenceMakerMenu menu, Inventory playerInv, Component title) {
         super(menu, playerInv, title);

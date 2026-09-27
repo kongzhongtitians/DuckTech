@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 public class FE2ThermalEssenceMachineScreen extends AbstractContainerScreen<FE2ThermalEssenceMachineMenu> {
 
     private static final ResourceLocation TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/fe2tem.png");
+            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/fe2thermal_essence_machine.png");
 
     public FE2ThermalEssenceMachineScreen(FE2ThermalEssenceMachineMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);

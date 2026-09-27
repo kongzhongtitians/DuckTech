@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class InjectionMachineScreen extends AbstractContainerScreen<InjectionMachineMenu> {
     public static final ResourceLocation GUI_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
-            "textures/screen/im.png");
+            "textures/screen/injection_machine.png");
     public static final ResourceLocation ARROW_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
             "textures/screen/arrow_progress.png");
 

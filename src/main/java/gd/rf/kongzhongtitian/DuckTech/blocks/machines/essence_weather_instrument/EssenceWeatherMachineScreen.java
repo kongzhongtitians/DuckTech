@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Inventory;
 public class EssenceWeatherMachineScreen extends AbstractContainerScreen<EssenceWeatherMachineMenu> {
 
     private static final ResourceLocation GUI_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/levitation.png");
+            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/essence_weather_instrument.png");
 
     /** 按钮布局常量（相对于 GUI 左上角） */
     private static final int BTN_X = 130;

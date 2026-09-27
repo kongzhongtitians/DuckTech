@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class AirPurifierScreen extends AbstractContainerScreen<AirPurifierMenu> {
     public static final ResourceLocation GUI_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
-            "textures/screen/levitation.png");
+            "textures/screen/air_purifier.png");
 
 
     public AirPurifierScreen(AirPurifierMenu p_97741_, Inventory p_97742_, Component p_97743_) {

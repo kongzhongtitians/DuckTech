@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class FrozenEssenceMakerScreen extends AbstractContainerScreen<FrozenEssenceMakerMenu> {
     private static final ResourceLocation TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/fem.png");
+            ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "textures/screen/frozen_essence_maker.png");
 
     public static final ResourceLocation ARROW_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
             "textures/screen/arrow_progress.png");
