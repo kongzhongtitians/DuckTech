@@ -7,6 +7,7 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_blast_furnace.Esse
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_conversion_machine.EssenceConversionMachineMenu;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_earth_furnace.EssenceEarthFurnaceMenu;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_furnace.EssenceFurnaceMenu;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_weather_instrument.EssenceWeatherMachineMenu;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.expulsion_machine.ExpulsionMachineMenu;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.fe2thermal_essence_machine.FE2ThermalEssenceMachineBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.fe2thermal_essence_machine.FE2ThermalEssenceMachineMenu;
@@ -18,7 +19,6 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.juice_extractor.JuiceExtra
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.levitation_machine.LevitationMachineMenu;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.thermal_essence_maker.ThermalEssenceMakerBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.thermal_essence_maker.ThermalEssenceMakerMenu;
-import gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine.EssenceWeatherMachineMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.entity.BlockEntity;
