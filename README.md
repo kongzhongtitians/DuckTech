@@ -1,10 +1,12 @@
 # 简介
-## PART A
 此处是 DuckTech 项目的 Github 仓库。
-## PART B
-DuckTech 由 The Duck Team 开发，仓库由 kongzhongtitians（空中梯田gugugu） 所有。
 
-参与开发的人员有
+DuckTech 由 The Duck Team 开发，仓库由 kongzhongtitians（空中梯田gugugu） 所有。
+- 需要使用MinecraftForge1.20.1-47.4.0以上版本进行加载；
+- 内嵌了模组RecipesAPI和PipeAPI；
+- 有完整的JEI兼容和部分的EMI兼容；
+- 预计2027年寒假发布。
+## 开发人员
 - [空中梯田gugugu](https://center.mcmod.cn/614386/)
 - [xiaopiao](https://center.mcmod.cn/645289/)
 - [热血少年小乐](https://center.mcmod.cn/383300/)
