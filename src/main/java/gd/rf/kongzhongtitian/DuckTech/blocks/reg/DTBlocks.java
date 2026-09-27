@@ -9,6 +9,7 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_blast_furnace.Esse
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_conversion_machine.EssenceConversionMachine;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_earth_furnace.EssenceEarthFurnace;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_furnace.EssenceFurnace;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_weather_instrument.EssenceWeatherInstrument;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.expulsion_machine.ExpulsionMachine;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.fe2thermal_essence_machine.FE2ThermalEssenceMachine;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.frozen_essence_maker.FrozenEssenceMaker;
@@ -19,7 +20,6 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.meow_machine.*;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.shredder.Shredder;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.thermal_essence_maker.ThermalEssenceMaker;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.void_essence_collector.VoidEssenceCollector;
-import gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine.EssenceWeatherMachine;
 import gd.rf.kongzhongtitian.DuckTech.blocks.rubber_sapling.RubberSaplingBlock;
 import gd.rf.kongzhongtitian.DuckTech.items.DTItems;
 import net.minecraft.world.level.block.Blocks;
@@ -188,7 +188,7 @@ public class DTBlocks {
 
     public static final RegistryObject<Block> AIR_PURIFIER = registerBlock("air_purifier", AirPurifier::new);
 
-    public static final RegistryObject<Block> ESSENCE_WEATHER_MACHINE = registerBlock("essence_weather_machine", EssenceWeatherMachine::new);
+    public static final RegistryObject<Block> ESSENCE_WEATHER_MACHINE = registerBlock("essence_weather_instrument", EssenceWeatherInstrument::new);
 
     public static RegistryObject<Block> MEOW_MACHINE = null;
 

@@ -1,4 +1,4 @@
-package gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine;
+package gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_weather_instrument;
 
 import gd.rf.kongzhongtitian.DuckTech.DuckTech;
 import net.minecraft.resources.ResourceLocation;

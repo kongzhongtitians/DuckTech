@@ -1,4 +1,4 @@
-package gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine;
+package gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_weather_instrument;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;

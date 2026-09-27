@@ -1,4 +1,4 @@
-package gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine;
+package gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_weather_instrument;
 
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -19,9 +19,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-public class EssenceWeatherMachine extends BaseEntityBlock {
+public class EssenceWeatherInstrument extends BaseEntityBlock {
 
-    public EssenceWeatherMachine() {
+    public EssenceWeatherInstrument() {
         super(Properties.of()
                 .mapColor(MapColor.METAL)
                 .strength(3.5F)

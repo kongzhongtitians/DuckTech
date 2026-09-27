@@ -9,6 +9,7 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_blast_furnace.Esse
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_conversion_machine.EssenceConversionMachineBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_earth_furnace.EssenceEarthFurnaceBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_furnace.EssenceFurnaceBlockEntity;
+import gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_weather_instrument.EssenceWeatherMachineBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.expulsion_machine.ExpulsionMachineBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.fe2thermal_essence_machine.FE2ThermalEssenceMachineBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.frozen_essence_maker.FrozenEssenceMakerBlockEntity;
@@ -19,7 +20,6 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.machines.meow_machine.MeowMachineBl
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.shredder.ShredderBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.thermal_essence_maker.ThermalEssenceMakerBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.machines.void_essence_collector.VoidEssenceCollectorBlockEntity;
-import gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine.EssenceWeatherMachineBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;

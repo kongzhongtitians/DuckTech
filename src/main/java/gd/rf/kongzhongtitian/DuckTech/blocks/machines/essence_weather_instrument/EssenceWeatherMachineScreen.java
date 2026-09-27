@@ -1,4 +1,4 @@
-package gd.rf.kongzhongtitian.DuckTech.blocks.machines.weather_machine;
+package gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_weather_instrument;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import gd.rf.kongzhongtitian.DuckTech.DuckTech;
