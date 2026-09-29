@@ -157,6 +157,26 @@ public class FrozenEssenceMakerBlockEntity extends BlockEntity implements MenuPr
         maxProgress = tag.getInt("maxProgress");
     }
 
+    // 世界存档：之前只重写了 getUpdateTag/handleUpdateTag（客户端同步），
+    // 导致区块卸载/服务器重启后库存和进度全部丢失，这里补上
+    @Override
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        tag.put("inventory", itemHandler.serializeNBT());
+        tag.putInt("progress", progress);
+        tag.putInt("maxProgress", maxProgress);
+        tag.putInt("outputCount", outputCount);
+    }
+
+    @Override
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        itemHandler.deserializeNBT(tag.getCompound("inventory"));
+        progress = tag.getInt("progress");
+        maxProgress = tag.getInt("maxProgress");
+        outputCount = tag.getInt("outputCount");
+    }
+
     @Nullable
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {

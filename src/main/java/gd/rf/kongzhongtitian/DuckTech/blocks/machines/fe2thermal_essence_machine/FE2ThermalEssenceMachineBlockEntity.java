@@ -74,7 +74,7 @@ public class FE2ThermalEssenceMachineBlockEntity extends BlockEntity implements 
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.oakgenerator.oak_generator");
+        return Component.translatable("block.ducktech.fe2thermal_essence_machine");
     }
 
     @Nullable

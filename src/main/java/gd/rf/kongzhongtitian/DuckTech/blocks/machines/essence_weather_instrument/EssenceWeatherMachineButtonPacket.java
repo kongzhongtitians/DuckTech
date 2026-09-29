@@ -35,6 +35,10 @@ public class EssenceWeatherMachineButtonPacket {
             if (player == null) {
                 return;
             }
+            // 距离校验：玩家必须站在机器附近（8 格内），防止远程触发/偷扣他人机器的精华
+            if (player.distanceToSqr(msg.pos.getX() + 0.5, msg.pos.getY() + 0.5, msg.pos.getZ() + 0.5) > 64.0) {
+                return;
+            }
             if (player.level().getBlockEntity(msg.pos) instanceof EssenceWeatherMachineBlockEntity be) {
                 be.applyWeather(msg.mode);
             }

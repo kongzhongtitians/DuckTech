@@ -16,7 +16,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -67,7 +66,7 @@ public class EssenceFurnaceBlockEntity extends DTBaseProcessingBlockEntity imple
                         getItemStackHandler().setStackInSlot(1, item);
                         getItemStackHandler().getStackInSlot(0).shrink(1);
                         progress = 0;
-                    } else if (outputStack.getItem() == Items.GOLD_INGOT && outputStack.getCount() < outputStack.getMaxStackSize()) {
+                    } else if (outputStack.is(item.getItem()) && outputStack.getCount() < outputStack.getMaxStackSize()) {
                         outputStack.grow(1);
                         getItemStackHandler().getStackInSlot(0).shrink(1);
                         progress = 0;

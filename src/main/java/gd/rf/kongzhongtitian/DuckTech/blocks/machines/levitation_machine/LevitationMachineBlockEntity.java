@@ -52,6 +52,9 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
         private static final int MAX_LEVITATION_TIME = 600;
         private boolean isLevitating = false;
 
+        /** 缓存的物品处理器 LazyOptional，避免每次 getCapability 都新建；卸载时失效 */
+        private LazyOptional<IItemHandler> inputHandlerCap = LazyOptional.empty();
+
         public void tick(Level level, BlockPos pos, BlockState state) {
             if (level.isClientSide) return;
 
@@ -127,44 +130,51 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
         @Override
         public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
             if (cap == ForgeCapabilities.ITEM_HANDLER) {
-
-                LazyOptional<IItemHandler> inputHandler = LazyOptional.of(() -> new IItemHandler() {
-                    @Override
-                    public int getSlots() {
-                        return itemStackHandler.getSlots();
-                    }
-
-                    @Override
-                    public ItemStack getStackInSlot(int slot) {
-                        return ItemStack.EMPTY;
-                    }
-
-                    @Override
-                    public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-                        if (slot == 0 && stack.getItem().equals(DTItems.AIR_ESSENCE.get())) {
-                            return itemStackHandler.insertItem(slot, stack, simulate);
+                if (!inputHandlerCap.isPresent()) {
+                    inputHandlerCap = LazyOptional.of(() -> new IItemHandler() {
+                        @Override
+                        public int getSlots() {
+                            return itemStackHandler.getSlots();
                         }
-                        return stack;
-                    }
 
-                    @Override
-                    public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                        return ItemStack.EMPTY;
-                    }
+                        @Override
+                        public ItemStack getStackInSlot(int slot) {
+                            return ItemStack.EMPTY;
+                        }
 
-                    @Override
-                    public int getSlotLimit(int slot) {
-                        return itemStackHandler.getSlotLimit(slot);
-                    }
+                        @Override
+                        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                            if (slot == 0 && stack.getItem().equals(DTItems.AIR_ESSENCE.get())) {
+                                return itemStackHandler.insertItem(slot, stack, simulate);
+                            }
+                            return stack;
+                        }
 
-                    @Override
-                    public boolean isItemValid(int slot, ItemStack stack) {
-                        return slot == 0 && stack.getItem().equals(DTItems.AIR_ESSENCE.get());
-                    }
-                });
-                return inputHandler.cast();
+                        @Override
+                        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                            return ItemStack.EMPTY;
+                        }
+
+                        @Override
+                        public int getSlotLimit(int slot) {
+                            return itemStackHandler.getSlotLimit(slot);
+                        }
+
+                        @Override
+                        public boolean isItemValid(int slot, ItemStack stack) {
+                            return slot == 0 && stack.getItem().equals(DTItems.AIR_ESSENCE.get());
+                        }
+                    });
+                }
+                return inputHandlerCap.cast();
             }
             return super.getCapability(cap, side);
+        }
+
+        @Override
+        public void invalidateCaps() {
+            super.invalidateCaps();
+            inputHandlerCap.invalidate();
         }
 
         protected final ContainerData data;
