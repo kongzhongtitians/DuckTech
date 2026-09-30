@@ -41,6 +41,9 @@ public class FrozenEssenceMakerBlockEntity extends BlockEntity implements MenuPr
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
+            // 只有输入槽能放原料；输出槽必须拒绝任何外部放入，
+            // 否则玩家/漏斗把冰塞进输出槽会导致 tryStartProcessing 判断 output.is(essence) 失败而卡死
+            if (slot != SLOT_INPUT) return false;
             return stack.is(Items.ICE) ||
                     stack.is(Items.PACKED_ICE) ||
                     stack.is(Items.SNOWBALL) ||

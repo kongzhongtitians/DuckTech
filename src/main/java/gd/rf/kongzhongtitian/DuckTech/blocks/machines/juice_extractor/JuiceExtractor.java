@@ -3,8 +3,10 @@ package gd.rf.kongzhongtitian.DuckTech.blocks.machines.juice_extractor;
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -47,5 +49,21 @@ public class JuiceExtractor extends BaseEntityBlock {
             NetworkHooks.openScreen((ServerPlayer) player, be, pos);
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock())) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof JuiceExtractorBlockEntity extractor) {
+                // 掉落输入/桶/输出槽里的物品，避免挖掉机器时物品凭空消失
+                SimpleContainer inv = new SimpleContainer(3);
+                for (int i = 0; i < 3; i++) {
+                    inv.setItem(i, extractor.getItemHandler().getStackInSlot(i));
+                }
+                Containers.dropContents(level, pos, inv);
+            }
+        }
+        super.onRemove(state, level, pos, newState, isMoving);
     }
 }
