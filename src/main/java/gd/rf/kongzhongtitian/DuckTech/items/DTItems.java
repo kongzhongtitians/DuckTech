@@ -3,6 +3,7 @@ package gd.rf.kongzhongtitian.DuckTech.items;
 import gd.rf.kongzhongtitian.DuckTech.DuckTech;
 import gd.rf.kongzhongtitian.DuckTech.entities.DTEntities;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -198,35 +199,15 @@ public class DTItems {
                             .alwaysEat()
                             .build())));
 
-    //盔甲
-    /*
-    public static final RegistryObject<Item> BASIC_ESSENCE_HELMET_LEVEL_ONE = ITEMS.register("basic_essence_helmet_level_one",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_ONE, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BASIC_ESSENCE_CHESTPLATE_LEVEL_ONE = ITEMS.register("basic_essence_chestplate_level_one",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_ONE, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BASIC_ESSENCE_LEGGINGS_LEVEL_ONE = ITEMS.register("basic_essence_leggings_level_one",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_ONE, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BASIC_ESSENCE_BOOTS_LEVEL_ONE = ITEMS.register("basic_essence_boots_level_one",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_ONE, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
-
-    public static final RegistryObject<Item> BASIC_ESSENCE_HELMET_LEVEL_TWO = ITEMS.register("basic_essence_helmet_level_two",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_TWO, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BASIC_ESSENCE_CHESTPLATE_LEVEL_TWO = ITEMS.register("basic_essence_chestplate_level_two",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_TWO, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BASIC_ESSENCE_LEGGINGS_LEVEL_TWO = ITEMS.register("basic_essence_leggings_level_two",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_TWO, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BASIC_ESSENCE_BOOTS_LEVEL_TWO = ITEMS.register("basic_essence_boots_level_two",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_TWO, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
-
-    public static final RegistryObject<Item> BASIC_ESSENCE_HELMET_LEVEL_THREE = ITEMS.register("basic_essence_helmet_level_three",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_THREE, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BASIC_ESSENCE_CHESTPLATE_LEVEL_THREE = ITEMS.register("basic_essence_chestplate_level_three",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_THREE, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BASIC_ESSENCE_LEGGINGS_LEVEL_THREE = ITEMS.register("basic_essence_leggings_level_three",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_THREE, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> BASIC_ESSENCE_BOOTS_LEVEL_THREE = ITEMS.register("basic_essence_boots_level_three",
-            () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_THREE, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
-*/
+    //盔甲（等级由 NBT "Level" 标签判定，1~3）
+    public static final RegistryObject<Item> BASIC_ESSENCE_HELMET = ITEMS.register("basic_essence_helmet",
+            () -> new BasicEssenceArmorItem(DTArmorMaterial.BASIC_ESSENCE, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BASIC_ESSENCE_CHESTPLATE = ITEMS.register("basic_essence_chestplate",
+            () -> new BasicEssenceArmorItem(DTArmorMaterial.BASIC_ESSENCE, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BASIC_ESSENCE_LEGGINGS = ITEMS.register("basic_essence_leggings",
+            () -> new BasicEssenceArmorItem(DTArmorMaterial.BASIC_ESSENCE, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BASIC_ESSENCE_BOOTS = ITEMS.register("basic_essence_boots",
+            () -> new BasicEssenceArmorItem(DTArmorMaterial.BASIC_ESSENCE, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
 
     public static RegistryObject<Item> registerSimpleItem(String itemName){
         return ITEMS.register(itemName , ()-> new Item(new Item.Properties()));
