@@ -4,18 +4,26 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.function.Consumer;
 
 /**
  * 基础精华盔甲。等级通过物品 NBT 标签 "Level"（1~3）判定，不区分物品 id。
  * - 每件护甲值 = 等级值（1 级 1 点、2 级 2 点、3 级 3 点）
  * - 耐久度 = 50 × 等级（1 级 50、2 级 100、3 级 150）
  * 未设置标签时默认按 1 级处理。
+ *
+ * 自动降级替换：非 1 级的盔甲耐久耗尽时不会损坏，而是自动降低 1 级并回满耐久；
+ * 1 级盔甲耐久耗尽则按原版逻辑正常损坏消失。
  */
 public class BasicEssenceArmorItem extends ArmorItem {
 
@@ -66,5 +74,31 @@ public class BasicEssenceArmorItem extends ArmorItem {
                 new AttributeModifier(ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()],
                         "Basic Essence armor modifier", level, AttributeModifier.Operation.ADDITION));
         return builder.build();
+    }
+
+    /**
+     * 耐久消耗入口（护甲受击时调用）。
+     * 非 1 级盔甲在耐久即将耗尽时自动降低一级并回满耐久，避免损坏；
+     * 1 级盔甲则走原版逻辑正常消耗/损坏。
+     */
+    @Override
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        // 创造模式不消耗耐久
+        if (entity instanceof Player player && player.getAbilities().instabuild) {
+            return 0;
+        }
+
+        int level = getLevel(stack);
+        if (level > 1) {
+            // 剩余可承受伤害 <= 本次伤害 → 耐久将耗尽，降级并回满，拦截本次消耗
+            int remaining = stack.getMaxDamage() - stack.getDamageValue();
+            if (amount >= remaining) {
+                setLevel(stack, level - 1);
+                stack.setDamageValue(0);
+                return 0;
+            }
+        }
+
+        return super.damageItem(stack, amount, entity, onBroken);
     }
 }
