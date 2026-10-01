@@ -91,7 +91,7 @@ public class DTItems {
     public static final RegistryObject<Item> SPEED_UPGRADE = registerSimpleItem("speed_upgrade");
     public static final RegistryObject<Item> STACK_UPGRADE = registerSimpleItem("stack_upgrade");
 
-    //SuLiao
+    //塑料
     public static final RegistryObject<Item> PLASTIC_SHEET = registerSimpleItem("plastic_sheet");
     public static final RegistryObject<Item> PLASTIC_CLUMP = registerSimpleItem("plastic_clump");
 
@@ -101,7 +101,7 @@ public class DTItems {
     public static final RegistryObject<Item> SACRIFICIAL_KNIFE = ITEMS.register("sacrificial_knife",
             () -> new Item(new Item.Properties().stacksTo(1).durability(64)));
 
-    //food
+    //饮料
     public static final RegistryObject<Item> DUCK_JUICE = ITEMS.register("duck_juice",
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
@@ -115,54 +115,54 @@ public class DTItems {
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
                             .nutrition(4)
-                            .saturationMod(0.5F)
+                            .saturationMod(0.6F)
                             .alwaysEat()
                             .build())));
     public static final RegistryObject<Item> BAMBOO_JUICE = ITEMS.register("bamboo_juice",
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
-                            .saturationMod(0.5F)
+                            .nutrition(3)
+                            .saturationMod(0.4F)
                             .alwaysEat()
                             .build())));
     public static final RegistryObject<Item> PUMPKIN_JUICE = ITEMS.register("pumpkin_juice",
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
-                            .saturationMod(0.5F)
+                            .nutrition(5)
+                            .saturationMod(0.6F)
                             .alwaysEat()
                             .build())));
     public static final RegistryObject<Item> WATERMELON_JUICE = ITEMS.register("watermelon_juice",
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
-                            .saturationMod(0.5F)
+                            .nutrition(3)
+                            .saturationMod(1.0F)
                             .alwaysEat()
                             .build())));
     public static final RegistryObject<Item> EGG_JUICE = ITEMS.register("egg_juice",
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
-                            .saturationMod(0.5F)
+                            .nutrition(5)
+                            .saturationMod(0.7F)
                             .alwaysEat()
                             .build())));
     public static final RegistryObject<Item> KELP_JUICE = ITEMS.register("kelp_juice",
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
-                            .saturationMod(0.5F)
+                            .nutrition(2)
+                            .saturationMod(0.4F)
                             .alwaysEat()
                             .build())));
     public static final RegistryObject<Item> COCOA_BEAN_JUICE = ITEMS.register("cocoa_bean_juice",
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
+                            .nutrition(6)
                             .saturationMod(0.5F)
                             .alwaysEat()
                             .build())));
@@ -170,8 +170,8 @@ public class DTItems {
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
-                            .saturationMod(0.5F)
+                            .nutrition(2)
+                            .saturationMod(0.8F)
                             .alwaysEat()
                             .build())));
     public static final RegistryObject<Item> WHEAT_JUICE = ITEMS.register("wheat_juice",
@@ -179,23 +179,23 @@ public class DTItems {
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
                             .nutrition(4)
-                            .saturationMod(0.5F)
+                            .saturationMod(0.7F)
                             .alwaysEat()
                             .build())));
     public static final RegistryObject<Item> BEETROOT_JUICE = ITEMS.register("beetroot_juice",
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
-                            .saturationMod(0.5F)
+                            .nutrition(3)
+                            .saturationMod(0.8F)
                             .alwaysEat()
                             .build())));
     public static final RegistryObject<Item> POTATO_JUICE = ITEMS.register("potato_juice",
             () -> new JuiceItem(new Item.Properties()
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
-                            .saturationMod(0.5F)
+                            .nutrition(3)
+                            .saturationMod(0.6F)
                             .alwaysEat()
                             .build())));
 
