@@ -15,9 +15,9 @@ import gd.rf.kongzhongtitian.DuckTech.items.DTItems;
 public class BasicEssenceArmorMaterial implements ArmorMaterial {
 
     // 耐久基准，对应 靴/腿/胸/头
-    private static final int[] DURABILITY = new int[]{50, 50, 50, 50};
+    public static final int[] DURABILITY = new int[]{65, 75, 80, 55};
     // 护甲基准（会被 NBT 等级覆盖），对应 靴/腿/胸/头
-    private static final int[] DEFENSE = new int[]{1, 1, 1, 1};
+    public static final int[] DEFENSE = new int[]{1, 4, 5, 2};
 
     @Override
     public int getDurabilityForType(ArmorItem.Type type) {

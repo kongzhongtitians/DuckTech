@@ -47,12 +47,21 @@ public class EssenceWeatherMachineBlockEntity extends BlockEntity implements Men
         }
     };
 
-    private final LazyOptional<ItemStackHandler> inventoryOptional = LazyOptional.of(() -> inventory);
+    private LazyOptional<ItemStackHandler> inventoryOptional = LazyOptional.of(() -> inventory);
 
     private int cooldown = 0;
 
     public EssenceWeatherMachineBlockEntity(BlockPos pos, BlockState state) {
         super(DTBlockEntity.ESSENCE_WEATHER_MACHINE_BE.get(), pos, state);
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        // invalidateCaps 已作废懒加载包装，区块重载后必须重新创建，否则漏斗/管道无法再交互
+        if (!inventoryOptional.isPresent()) {
+            inventoryOptional = LazyOptional.of(() -> inventory);
+        }
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, EssenceWeatherMachineBlockEntity be) {
@@ -146,7 +155,25 @@ public class EssenceWeatherMachineBlockEntity extends BlockEntity implements Men
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return inventoryOptional.cast();
+            if (side == null) {
+                // 玩家 GUI 内部使用，完整读写
+                return inventoryOptional.cast();
+            }
+            // 自动化（漏斗/管道）方向：允许塞入空气精华，但禁止抽取，防止漏斗从机器下方偷走 64 个精华
+            return LazyOptional.of(() -> new net.minecraftforge.items.IItemHandler() {
+                @Override public int getSlots() { return inventory.getSlots(); }
+                @NotNull @Override public ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
+                @NotNull @Override public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+                    return inventory.insertItem(slot, stack, simulate);
+                }
+                @NotNull @Override public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                    return ItemStack.EMPTY;
+                }
+                @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
+                @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+                    return inventory.isItemValid(slot, stack);
+                }
+            }).cast();
         }
         return super.getCapability(cap, side);
     }

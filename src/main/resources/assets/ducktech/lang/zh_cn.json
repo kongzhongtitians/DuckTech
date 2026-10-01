@@ -121,6 +121,7 @@
   "gui.ducktech.weather.clear": "晴",
   "gui.ducktech.weather.rain": "雨",
   "gui.ducktech.weather.thunder": "雷暴",
+  "gui.ducktech.downgrade": "你的 %s 级装备已降级！",
 
   "block.ducktech.meow_machine": "喵呜机 (精华转化机)",
 

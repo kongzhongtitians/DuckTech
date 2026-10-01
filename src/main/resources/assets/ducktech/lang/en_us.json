@@ -121,6 +121,7 @@
   "gui.ducktech.weather.clear": "Clear",
   "gui.ducktech.weather.rain": "Rain",
   "gui.ducktech.weather.thunder": "Thunder",
+  "gui.ducktech.downgrade": "Your %s level equipment has been downgraded!",
 
   "block.ducktech.meow_machine": "Meow Machine (Essence Conversion Machine)",
 
