@@ -226,6 +226,15 @@ public class DTItems {
     public static final RegistryObject<Item> BASIC_ESSENCE_BOOTS = ITEMS.register("basic_essence_boots",
             () -> new BasicEssenceArmorItem(DTArmorMaterial.BASIC_ESSENCE, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
 
+    public static final RegistryObject<Item> FROZEN_ESSENCE_HELMET = ITEMS.register("frozen_essence_helmet",
+            () -> new FrozenEssenceArmorItem(DTArmorMaterial.FROZEN_ESSENCE, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FROZEN_ESSENCE_CHESTPLATE = ITEMS.register("frozen_essence_chestplate",
+            () -> new FrozenEssenceArmorItem(DTArmorMaterial.FROZEN_ESSENCE, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FROZEN_ESSENCE_LEGGINGS = ITEMS.register("frozen_essence_leggings",
+            () -> new FrozenEssenceArmorItem(DTArmorMaterial.FROZEN_ESSENCE, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FROZEN_ESSENCE_BOOTS = ITEMS.register("frozen_essence_boots",
+            () -> new FrozenEssenceArmorItem(DTArmorMaterial.FROZEN_ESSENCE, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
+
     public static RegistryObject<Item> registerSimpleItem(String itemName){
         return ITEMS.register(itemName , ()-> new Item(new Item.Properties()));
     }

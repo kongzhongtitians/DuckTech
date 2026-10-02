@@ -18,19 +18,21 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 /**
- * 基础精华盔甲。等级通过物品 NBT 标签 "Level"（1~3）判定，不区分物品 id。
- * - 每件护甲值 = 等级值（1 级 1 点、2 级 2 点、3 级 3 点）
- * - 耐久度 = 50 × 等级（1 级 50、2 级 100、3 级 150）
+ * 冷冻精华盔甲。等级通过物品 NBT 标签 "Level"（1~5）判定，不区分物品 id。
+ * - 护甲值随等级提升（1~5 级分别对应 1/4/5/2 → 3/7/8/4 等防御数组）
+ * - 耐久基准来自 FrozenEssenceArmorMaterial
  * 未设置标签时默认按 1 级处理。
  * 自动降级替换：非 1 级的盔甲耐久耗尽时不会损坏，而是自动降低 1 级并回满耐久；
  * 1 级盔甲耐久耗尽则按原版逻辑正常损坏消失。
+ * 套装效果见 FrozenEssenceArmorHandler：
+ * 集齐四件 → 水下呼吸 + 水下速掘；四件套均 ≥3 级 → 冰霜行者。
  */
 public class FrozenEssenceArmorItem extends ArmorItem {
 
     public static final String LEVEL_TAG = "Level";
     public static final int MAX_LEVEL = 5;
-    private static final int[] BASE_DURABILITY = BasicEssenceArmorMaterial.DURABILITY;
-    private static final int[] BASE_DEFENSE = BasicEssenceArmorMaterial.DEFENSE;
+    private static final int[] BASE_DURABILITY = FrozenEssenceArmorMaterial.DURABILITY;
+    private static final int[] BASE_DEFENSE = FrozenEssenceArmorMaterial.DEFENSE;
     private static final int[] SECOND_DEFENSE = new int[]{2, 5, 6, 2};
     private static final int[] THIRD_DEFENSE = new int[]{3, 6, 7, 3};
     private static final int[] FORTH_DEFENSE = new int[]{3, 6, 8, 3};

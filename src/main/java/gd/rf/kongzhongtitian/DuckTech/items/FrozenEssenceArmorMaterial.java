@@ -7,9 +7,9 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
 /**
- * 基础精华盔甲的统一材质。
- * 护甲值与耐久基准值固定在这里，实际数值由 BasicEssenceArmorItem
- * 根据物品 NBT 标签 "Level"（1~3）动态决定。
+ * 冷冻精华盔甲的统一材质。
+ * 护甲值与耐久基准值固定在这里，实际数值由 FrozenEssenceArmorItem
+ * 根据物品 NBT 标签 "Level"（1~5）动态决定。
  */
 public class FrozenEssenceArmorMaterial implements ArmorMaterial {
 
@@ -40,12 +40,12 @@ public class FrozenEssenceArmorMaterial implements ArmorMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.of(DTItems.BASIC_ESSENCE.get());
+        return Ingredient.of(DTItems.FROZEN_ESSENCE.get());
     }
 
     @Override
     public String getName() {
-        return "ducktech:basic_essence";
+        return "ducktech:frozen_essence";
     }
 
     @Override
