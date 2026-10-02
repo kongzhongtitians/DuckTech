@@ -55,7 +55,7 @@ public class EssenceConversionMachineMenu extends DTBaseMenu {
     }
 
     public EssenceConversionMachineMenu(int containerId, Inventory inventory, FriendlyByteBuf friendlyByteBuf ){
-        this(containerId, inventory, ((EssenceConversionMachineBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(2));
+        this(containerId, inventory, ((EssenceConversionMachineBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(3));
     }
 
     @Override

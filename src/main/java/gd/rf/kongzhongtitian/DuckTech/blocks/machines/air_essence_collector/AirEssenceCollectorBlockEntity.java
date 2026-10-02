@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class AirEssenceCollectorBlockEntity extends BlockEntity {
+    private static final int MAX_COLLECT_TIME = 80;
     private boolean isActive = false;
     private int currentTime = 0;
 
@@ -27,45 +28,45 @@ public class AirEssenceCollectorBlockEntity extends BlockEntity {
                 pos.north(), pos.south(), pos.east(), pos.west(), pos.below(), pos.above()
         };
 
-
-        boolean allSidesBlocked = true;
+        // 命名与语义一致：allSidesOpen = true 表示六个侧面全部为空（开放环境）
+        boolean allSidesOpen = true;
         for (BlockPos sidePosition : sidePositions) {
             if (!level.isEmptyBlock(sidePosition)) {
-                allSidesBlocked = false;
+                allSidesOpen = false;
                 break;
             }
         }
 
-        if (allSidesBlocked) {
-            if (isActive) {
-                if (currentTime < 80) {
-                    currentTime++;
-                } else {
-                    if (!level.isClientSide()&& DTConfig.switch_sound()) {
-                        level.playSound(null, pos,
-                                DTSounds.ZAOYIN.get(),
-                                SoundSource.BLOCKS,
-                                1.0F,
-                                1.0F);
-                    }
-                    ItemEntity outputEntity = new ItemEntity(
-                            level,
-                            pos.getX() + 0.5,
-                            pos.above().getY() + 0.5,
-                            pos.getZ() + 0.5,
-                            DTItems.AIR_ESSENCE.get().getDefaultInstance()
-                    );
-                    outputEntity.setDeltaMovement(0, 0.1, 0);
-                    level.addFreshEntity(outputEntity);
-
-                    isActive = false;
-                    currentTime = 0;
-                }
-            } else {
+        if (allSidesOpen) {
+            if (!isActive) {
                 startWorking();
-            }
+            } else if (currentTime < MAX_COLLECT_TIME) {
+                currentTime++;
+            } else {
+                if (DTConfig.switch_sound()) {
+                    level.playSound(null, pos,
+                            DTSounds.ZAOYIN.get(),
+                            SoundSource.BLOCKS,
+                            1.0F,
+                            1.0F);
+                }
+                ItemEntity outputEntity = new ItemEntity(
+                        level,
+                        pos.getX() + 0.5,
+                        pos.above().getY() + 0.5,
+                        pos.getZ() + 0.5,
+                        DTItems.AIR_ESSENCE.get().getDefaultInstance()
+                );
+                outputEntity.setDeltaMovement(0, 0.1, 0);
+                level.addFreshEntity(outputEntity);
 
-            startWorking();
+                isActive = false;
+                currentTime = 0;
+            }
+        } else if (isActive) {
+            // 环境被遮挡时停止工作，避免 isActive/currentTime 状态悬挂
+            isActive = false;
+            currentTime = 0;
         }
     }
 

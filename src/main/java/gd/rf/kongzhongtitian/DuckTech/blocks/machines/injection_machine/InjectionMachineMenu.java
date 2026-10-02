@@ -55,7 +55,7 @@ public class InjectionMachineMenu extends DTBaseMenu {
     }
 
     public InjectionMachineMenu(int containerId, Inventory inventory, FriendlyByteBuf friendlyByteBuf ){
-        this(containerId, inventory, ((InjectionMachineBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(2));
+        this(containerId, inventory, ((InjectionMachineBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(3));
     }
 
     @Override

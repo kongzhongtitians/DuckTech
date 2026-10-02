@@ -20,7 +20,7 @@ public class AdvanceShredderMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public AdvanceShredderMenu(int containerId, Inventory inventory,FriendlyByteBuf friendlyByteBuf) {
-        this(containerId, inventory, ((AdvanceShredderBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(2));
+        this(containerId, inventory, ((AdvanceShredderBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(3));
     }
 
     public AdvanceShredderMenu(int containerId, Inventory inv, BlockEntity entity, ContainerData data) {

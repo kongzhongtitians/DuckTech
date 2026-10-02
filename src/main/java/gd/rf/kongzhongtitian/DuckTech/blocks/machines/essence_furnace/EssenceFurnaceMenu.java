@@ -54,7 +54,7 @@ public class EssenceFurnaceMenu extends DTBaseMenu {
     }
 
     public EssenceFurnaceMenu(int containerId, Inventory inventory, FriendlyByteBuf friendlyByteBuf ){
-        this(containerId, inventory, ((EssenceFurnaceBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(2));
+        this(containerId, inventory, ((EssenceFurnaceBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(3));
     }
 
     @Override

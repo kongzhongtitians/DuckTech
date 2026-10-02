@@ -33,7 +33,8 @@ public class ProcessingData<T extends DTBaseProcessingBlockEntity> implements Co
     }
     @Override
     public int getCount() {
-        return 2;
+        // 与各菜单客户端的 SimpleContainerData(3) 保持一致（index 2 无实际数据）
+        return 3;
     }
 
 }
