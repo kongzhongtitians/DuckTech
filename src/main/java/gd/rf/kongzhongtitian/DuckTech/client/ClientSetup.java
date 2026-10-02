@@ -34,6 +34,11 @@ public class ClientSetup {
                     DTBlocks.RUBBER_LEAVES.get(),
                     RenderType.cutoutMipped()
             );
+            // 树苗是 cross 模型（十字草状），必须用 cutout 渲染层，否则显示为不透明黑框
+            ItemBlockRenderTypes.setRenderLayer(
+                    DTBlocks.RUBBER_SAPLING.get(),
+                    RenderType.cutout()
+            );
         });
     }
 }

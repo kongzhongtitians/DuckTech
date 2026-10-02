@@ -21,7 +21,7 @@ import java.util.List;
 public class AdvanceShredderRecipeJEIPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
-        return ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "jei");
+        return ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "jei_advance_shredder");
     }
 
     @Override

@@ -20,7 +20,7 @@ import java.util.List;
 public class EssenceConversionMachineRecipeJEIPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
-        return ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "jei");
+        return ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "jei_essence_conversion_machine");
     }
 
     @Override
