@@ -4,6 +4,7 @@ import gd.rf.kongzhongtitian.DuckTech.blocks.gui.DTMenu;
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlocks;
 import gd.rf.kongzhongtitian.DuckTech.config.DTConfig;
+import gd.rf.kongzhongtitian.DuckTech.enchantments.DTEnchantments;
 import gd.rf.kongzhongtitian.DuckTech.entities.DTEntities;
 import gd.rf.kongzhongtitian.DuckTech.items.DTCreativeTab;
 import gd.rf.kongzhongtitian.DuckTech.items.DTItems;
@@ -58,6 +59,7 @@ public class DuckTech {
         DTRecipe.RECIPE_TYPES.register(modEventBus);
         DTRecipeSerializers.SERIALIZERS.register(modEventBus);
         DTMenu.MENUS.register(modEventBus);
+        DTEnchantments.ENCHANTMENTS.register(modEventBus);
         LOGGER.info("DuckTech Has Loaded");
     }
     private void onConstructMod(final FMLConstructModEvent event) {
