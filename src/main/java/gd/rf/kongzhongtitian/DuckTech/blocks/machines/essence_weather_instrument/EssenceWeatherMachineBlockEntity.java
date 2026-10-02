@@ -142,7 +142,7 @@ public class EssenceWeatherMachineBlockEntity extends BlockEntity implements Men
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.ducktech.essence_weather_machine");
+        return Component.translatable("block.ducktech.essence_weather_instrument");
     }
 
     @Nullable

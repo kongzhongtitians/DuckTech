@@ -41,7 +41,8 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
-            if (!level.isClientSide) {
+            // level 在 deserializeNBT（chunk 加载）期间可能尚未赋值，需判空
+            if (level != null && !level.isClientSide) {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
             super.onContentsChanged(slot);
@@ -113,6 +114,22 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
         @Override
         public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
             return ClientboundBlockEntityDataPacket.create(this);
+        }
+
+        @Override
+        public void load(CompoundTag tag) {
+            super.load(tag);
+            this.itemStackHandler.deserializeNBT(tag.getCompound("inventory"));
+            this.levitationTime = tag.getInt("levitationTime");
+            this.isLevitating = tag.getBoolean("isLevitating");
+        }
+
+        @Override
+        protected void saveAdditional(CompoundTag tag) {
+            super.saveAdditional(tag);
+            tag.put("inventory", this.itemStackHandler.serializeNBT());
+            tag.putInt("levitationTime", this.levitationTime);
+            tag.putBoolean("isLevitating", this.isLevitating);
         }
 
         private AABB getBoundingBox(BlockPos pos, int radius) {

@@ -10,6 +10,7 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class LevitationMachineMenu extends AbstractContainerMenu {
@@ -27,7 +28,8 @@ public class LevitationMachineMenu extends AbstractContainerMenu {
 
         addDataSlots(data);
 
-        IItemHandler itemHandler = blockEntity.itemStackHandler;
+        // 客户端 BE 未找到时（区块卸载/时序）降级为空处理器，避免 NPE 崩溃
+        IItemHandler itemHandler = entity != null ? entity.itemStackHandler : new ItemStackHandler(1);
 
         // 添加输入槽位
         this.addSlot(new SlotItemHandler(itemHandler, 0, 80, 36));

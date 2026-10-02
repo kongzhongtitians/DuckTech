@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,8 +36,8 @@ public class AdvanceShredderMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
 
-        // 添加机器槽位
-        IItemHandler itemHandler = blockEntity.itemStackHandler;
+        // 客户端 BE 未找到时（区块卸载/时序）降级为空处理器，避免 NPE 崩溃
+        IItemHandler itemHandler = entity != null ? ((AdvanceShredderBlockEntity) entity).itemStackHandler : new ItemStackHandler(5);
         // 输入槽位
         this.addSlot(new SlotItemHandler(itemHandler, AdvanceShredderBlockEntity.INPUT_SLOT_1, 54, 24));
         this.addSlot(new SlotItemHandler(itemHandler, AdvanceShredderBlockEntity.INPUT_SLOT_2, 54, 44));

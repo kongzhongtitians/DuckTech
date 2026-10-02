@@ -9,6 +9,7 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class EssenceFurnaceMenu extends DTBaseMenu {
@@ -28,7 +29,8 @@ public class EssenceFurnaceMenu extends DTBaseMenu {
 
         this.data = data;
 
-        IItemHandler itemHandler = blockEntity.itemStackHandler;
+        // 客户端 BE 未找到时（区块卸载/时序）降级为空处理器，避免 NPE 崩溃
+        IItemHandler itemHandler = entity instanceof EssenceFurnaceBlockEntity e ? e.itemStackHandler : new ItemStackHandler(2);
 
         this.addSlot(new SlotItemHandler(itemHandler,0,54,34));
         this.addSlot(new SlotItemHandler(itemHandler,1,104,34){

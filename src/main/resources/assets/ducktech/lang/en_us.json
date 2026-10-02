@@ -130,7 +130,7 @@
   "block.ducktech.essence_blast_furnace" : "Essence Blast Furnace",
   "block.ducktech.expulsion_machine" : "Expulsion Machine",
   "block.ducktech.air_purifier": "Air Purifier",
-  "block.ducktech.essence_weather_machine": "Essence Weather Instrument",
+  "block.ducktech.essence_weather_instrument": "Essence Weather Instrument",
   "block.ducktech.fe2thermal_essence_machine": "FE to Thermal Essence Machine",
 
   "gui.ducktech.rubber":"Rubber Cache: ",

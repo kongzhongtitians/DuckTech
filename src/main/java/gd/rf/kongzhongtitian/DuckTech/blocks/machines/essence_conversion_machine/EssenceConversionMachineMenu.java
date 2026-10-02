@@ -9,6 +9,7 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class EssenceConversionMachineMenu extends DTBaseMenu {
@@ -28,7 +29,8 @@ public class EssenceConversionMachineMenu extends DTBaseMenu {
 
         this.data = data;
 
-        IItemHandler itemHandler = blockEntity.itemStackHandler;
+        // 客户端 BE 未找到时（区块卸载/时序）降级为空处理器，避免 NPE 崩溃
+        IItemHandler itemHandler = entity instanceof EssenceConversionMachineBlockEntity e ? e.itemStackHandler : new ItemStackHandler(3);
 
         this.addSlot(new SlotItemHandler(itemHandler,0,49,40));
         this.addSlot(new SlotItemHandler(itemHandler,1,80,18));
@@ -53,7 +55,7 @@ public class EssenceConversionMachineMenu extends DTBaseMenu {
     }
 
     public EssenceConversionMachineMenu(int containerId, Inventory inventory, FriendlyByteBuf friendlyByteBuf ){
-        this(containerId, inventory, ((EssenceConversionMachineBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(3));
+        this(containerId, inventory, ((EssenceConversionMachineBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(2));
     }
 
     @Override

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ducktech:block/essence_weather_machine"
+    "all": "ducktech:block/expulsion_machine"
   }
 }

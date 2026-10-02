@@ -130,7 +130,7 @@
   "block.ducktech.essence_blast_furnace" : "精华高炉",
   "block.ducktech.expulsion_machine" : "驱逐器",
   "block.ducktech.air_purifier": "空气净化器",
-  "block.ducktech.essence_weather_machine": "精华气象仪",
+  "block.ducktech.essence_weather_instrument": "精华气象仪",
   "block.ducktech.fe2thermal_essence_machine": "FE转热力精华机",
 
   "gui.ducktech.rubber":"橡胶缓存: ",

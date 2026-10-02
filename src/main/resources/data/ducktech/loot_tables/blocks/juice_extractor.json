@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ducktech:essence_weather_machine"
+          "name": "ducktech:juice_extractor"
         }
       ],
       "rolls": 1.0
