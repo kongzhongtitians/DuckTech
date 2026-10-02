@@ -25,6 +25,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -78,11 +79,11 @@ public class InjectionMachineRecipeCategory implements IRecipeCategory<Injection
         List<CountedIngredient> inputs = recipe.getInputs();
 
         if (ingredients.size() == 1){
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 44,34).addItemStack(inputs.get(0).createItemStack()).setBackground(slot.build(),-1,-1);
+            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 44,34).addItemStacks(toStackList(inputs.get(0))).setBackground(slot.build(),-1,-1);
             iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 65,34).addItemStack(Items.AIR.getDefaultInstance()).setBackground(slot.build(),-1,-1);
         }else if (ingredients.size() == 2){
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 44,34).addItemStack(inputs.get(0).createItemStack()).setBackground(slot.build(),-1,-1);
-            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 65,34).addItemStack(inputs.get(1).createItemStack()).setBackground(slot.build(),-1,-1);
+            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 44,34).addItemStacks(toStackList(inputs.get(0))).setBackground(slot.build(),-1,-1);
+            iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.INPUT, 65,34).addItemStacks(toStackList(inputs.get(1))).setBackground(slot.build(),-1,-1);
         }
 
         // 注射机最多 1 个输出
@@ -97,6 +98,20 @@ public class InjectionMachineRecipeCategory implements IRecipeCategory<Injection
             iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT, 108, 34).setBackground(slot.build(),-1,-1)
                     .addItemStack(out);
         }
+    }
+
+    /**
+     * 将配方输入展开为带数量的完整 ItemStack 列表。
+     * 对 tag 输入会包含 tag 内全部物品（如 4 件精华盔甲），供 JEI 以“任一”形式展示。
+     */
+    private static List<ItemStack> toStackList(CountedIngredient input) {
+        List<ItemStack> stacks = new ArrayList<>();
+        for (ItemStack s : input.ingredient().getItems()) {
+            ItemStack copy = s.copy();
+            copy.setCount(input.count());
+            stacks.add(copy);
+        }
+        return stacks;
     }
 
     @Override

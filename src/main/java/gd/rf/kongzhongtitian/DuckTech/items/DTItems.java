@@ -35,6 +35,23 @@ public class DTItems {
     public static final RegistryObject<Item> FROZEN_ESSENCE = registerSimpleItem("frozen_essence");
     public static final RegistryObject<Item> DUCK_ESSENCE = registerSimpleItem("duck_essence");
 
+    //精华粉网板
+    public static final RegistryObject<Item> AIR_ESSENCE_DUST = registerSimpleItem("air_essence_dust");
+    public static final RegistryObject<Item> AIR_ESSENCE_MESH = registerSimpleItem("air_essence_mesh");
+    public static final RegistryObject<Item> AIR_ESSENCE_PLATE = registerSimpleItem("air_essence_plate");
+    public static final RegistryObject<Item> VOID_ESSENCE_DUST = registerSimpleItem("void_essence_dust");
+    public static final RegistryObject<Item> VOID_ESSENCE_MESH = registerSimpleItem("void_essence_mesh");
+    public static final RegistryObject<Item> VOID_ESSENCE_PLATE = registerSimpleItem("void_essence_plate");
+    public static final RegistryObject<Item> THERMAL_ESSENCE_DUST = registerSimpleItem("thermal_essence_dust");
+    public static final RegistryObject<Item> THERMAL_ESSENCE_MESH = registerSimpleItem("thermal_essence_mesh");
+    public static final RegistryObject<Item> THERMAL_ESSENCE_PLATE = registerSimpleItem("thermal_essence_plate");
+    public static final RegistryObject<Item> FROZEN_ESSENCE_DUST = registerSimpleItem("frozen_essence_dust");
+    public static final RegistryObject<Item> FROZEN_ESSENCE_MESH = registerSimpleItem("frozen_essence_mesh");
+    public static final RegistryObject<Item> FROZEN_ESSENCE_PLATE = registerSimpleItem("frozen_essence_plate");
+    public static final RegistryObject<Item> DUCK_ESSENCE_DUST = registerSimpleItem("duck_essence_dust");
+    public static final RegistryObject<Item> DUCK_ESSENCE_MESH = registerSimpleItem("duck_essence_mesh");
+    public static final RegistryObject<Item> DUCK_ESSENCE_PLATE = registerSimpleItem("duck_essence_plate");
+
     //齿轮
     public static final RegistryObject<Item> IRON_GEAR = registerSimpleItem("iron_gear");
     public static final RegistryObject<Item> GOLDEN_GEAR = registerSimpleItem("golden_gear");
