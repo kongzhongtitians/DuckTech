@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ducktech:basic_essence_helmet",
+    "ducktech:basic_essence_chestplate",
+    "ducktech:basic_essence_leggings",
+    "ducktech:basic_essence_boots"
+  ]
+}

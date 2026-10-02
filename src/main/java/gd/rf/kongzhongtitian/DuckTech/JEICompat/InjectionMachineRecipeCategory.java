@@ -88,8 +88,14 @@ public class InjectionMachineRecipeCategory implements IRecipeCategory<Injection
         // 注射机最多 1 个输出
         List<ItemStack> outputs = recipe.getOutputs();
         if (!outputs.isEmpty()) {
+            ItemStack out = outputs.get(0);
+            // 升级配方：实际产物是继承输入的“等级+1”精华盔甲，给输出加提示
+            if (recipe.getOutputTransform() == InjectionMachineRecipe.TRANSFORM_ARMOR_LEVEL_UP) {
+                out = out.copy();
+                out.setHoverName(Component.translatable("gui.ducktech.injection.level_up_output"));
+            }
             iRecipeLayoutBuilder.addSlot(RecipeIngredientRole.OUTPUT, 108, 34).setBackground(slot.build(),-1,-1)
-                    .addItemStack(outputs.get(0));
+                    .addItemStack(out);
         }
     }
 

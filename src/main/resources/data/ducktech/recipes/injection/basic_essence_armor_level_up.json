@@ -1,0 +1,21 @@
+{
+  "type": "ducktech:injection_machine",
+  "input": [
+    {
+      "tag": "ducktech:basic_essence_armor",
+      "count": 1
+    },
+    {
+      "item": "ducktech:basic_essence_plate",
+      "count": 8
+    }
+  ],
+  "output": [
+    {
+      "item": "ducktech:basic_essence_helmet",
+      "count": 1
+    }
+  ],
+  "outputTransform": 1,
+  "processingTime": 60
+}

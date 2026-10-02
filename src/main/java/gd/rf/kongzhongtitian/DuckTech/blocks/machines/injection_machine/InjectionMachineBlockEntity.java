@@ -4,6 +4,7 @@ import gd.rf.kongzhongtitian.DuckTech.api.block.DTBaseProcessingBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.api.recipes.InputOutputRecipe;
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.config.DTConfig;
+import gd.rf.kongzhongtitian.DuckTech.items.BasicEssenceArmorItem;
 import gd.rf.kongzhongtitian.DuckTech.recipe.DTRecipe;
 import gd.rf.kongzhongtitian.DuckTech.sounds.DTSounds;
 import gd.rf.kongzhongtitian.DuckTech.utils.RecipeOutputUtil;
@@ -73,11 +74,45 @@ public class InjectionMachineBlockEntity extends DTBaseProcessingBlockEntity imp
         }
     }
 
-    private <T extends InputOutputRecipe> void craftItem(T recipe) {
+    private void craftItem(InjectionMachineRecipe recipe) {
+        List<ItemStack> outputs = resolveOutputs(recipe);
+        if (outputs.isEmpty()) {
+            return;
+        }
         if (!RecipeOutputUtil.consumeInputs(recipe, itemStackHandler, List.of(INPUT_SLOT_1, INPUT_SLOT_2))) {
             return;
         }
-        RecipeOutputUtil.produceOutputs(recipe.getOutputs(), itemStackHandler, List.of(2));
+        RecipeOutputUtil.produceOutputs(outputs, itemStackHandler, List.of(OUTPUT_SLOT));
+    }
+
+    /**
+     * 计算实际产物。
+     * 升级配方（outputTransform = 精华盔甲升级）：产物 = 输入精华盔甲的副本，等级 +1 且耐久回满（继承附魔/名称等 NBT）；
+     * 普通配方：直接使用 JSON 中声明的静态输出。
+     */
+    private List<ItemStack> resolveOutputs(InjectionMachineRecipe recipe) {
+        if (recipe.getOutputTransform() == InjectionMachineRecipe.TRANSFORM_ARMOR_LEVEL_UP) {
+            ItemStack armor = findArmorInInputs();
+            if (armor.isEmpty()) {
+                return List.of();
+            }
+            ItemStack upgraded = armor.copy();
+            BasicEssenceArmorItem.setLevel(upgraded, BasicEssenceArmorItem.getLevel(upgraded) + 1);
+            upgraded.setDamageValue(0);
+            return List.of(upgraded);
+        }
+        return recipe.getOutputs();
+    }
+
+    /** 在输入槽中查找任意一件基础精华盔甲。 */
+    private ItemStack findArmorInInputs() {
+        for (int slot : new int[]{INPUT_SLOT_1, INPUT_SLOT_2}) {
+            ItemStack stack = itemStackHandler.getStackInSlot(slot);
+            if (!stack.isEmpty() && stack.getItem() instanceof BasicEssenceArmorItem) {
+                return stack;
+            }
+        }
+        return ItemStack.EMPTY;
     }
 
     private void resetProgress() {

@@ -28,15 +28,17 @@ import java.util.function.Consumer;
 public class BasicEssenceArmorItem extends ArmorItem {
 
     public static final String LEVEL_TAG = "Level";
-    public static final int MAX_LEVEL = 3;
+    public static final int MAX_LEVEL = 5;
     private static final int[] BASE_DURABILITY = BasicEssenceArmorMaterial.DURABILITY;
     private static final int[] BASE_DEFENSE = BasicEssenceArmorMaterial.DEFENSE;
     private static final int[] SECOND_DEFENSE = new int[]{2, 5, 6, 2};
     private static final int[] THIRD_DEFENSE = new int[]{3, 6, 7, 3};
+    private static final int[] FORTH_DEFENSE = new int[]{3, 6, 8, 3};
+    private static final int[] FIFTH_DEFENSE = new int[]{3, 7, 8, 4};
 
     // 靴/腿/胸/头 的护甲属性修饰符 UUID（与原版标准值一致）
     private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = new UUID[]{
-            UUID.fromString("845DB27C-C62S4-495F-8C9F-6020A9A58B6B"),
+            UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"),
             UUID.fromString("D8499B04-0E66-4726-AB29-64469D593E6E"),
             UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E"),
             UUID.fromString("2AD3F246-FEE1-4E67-B886-69FF380E1F22")
@@ -78,6 +80,8 @@ public class BasicEssenceArmorItem extends ArmorItem {
             case 1:defense=BASE_DEFENSE;break;
             case 2:defense=SECOND_DEFENSE;break;
             case 3:defense=THIRD_DEFENSE;break;
+            case 4:defense=FORTH_DEFENSE;break;
+            case 5:defense=FIFTH_DEFENSE;break;
             default:defense=new int[]{1, 1, 1, 1};break;
         }
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
