@@ -50,7 +50,7 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
     };
 
         private int levitationTime = 0;
-        private static final int MAX_LEVITATION_TIME = 600;
+        public static final int MAX_LEVITATION_TIME = 600;
         private boolean isLevitating = false;
 
         /** 缓存的物品处理器 LazyOptional，避免每次 getCapability 都新建；卸载时失效 */

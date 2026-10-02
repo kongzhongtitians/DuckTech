@@ -40,7 +40,9 @@ public class LevitationMachineScreen extends AbstractContainerScreen<LevitationM
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, 256, 256);
 
         if (this.getMenu().getTime() > 0){
-            guiGraphics.drawString(this.font, Component.literal("time:").append((int)(Math.ceil((double)(30 - this.getMenu().getTime() / 20))) +"s"), x + 75, y + 60, 0x404040 , false);
+            // 剩余秒数 = (总时长600tick - 已用tick) / 20，向上取整；避免整数除法先截断
+            int remaining = (int) Math.ceil((LevitationMachineBlockEntity.MAX_LEVITATION_TIME - this.getMenu().getTime()) / 20.0);
+            guiGraphics.drawString(this.font, Component.literal("time:").append(remaining + "s"), x + 75, y + 60, 0x404040 , false);
 
         }
     }
