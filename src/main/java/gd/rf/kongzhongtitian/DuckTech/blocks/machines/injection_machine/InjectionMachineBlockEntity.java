@@ -5,6 +5,7 @@ import gd.rf.kongzhongtitian.DuckTech.api.recipes.InputOutputRecipe;
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlockEntity;
 import gd.rf.kongzhongtitian.DuckTech.config.DTConfig;
 import gd.rf.kongzhongtitian.DuckTech.items.BasicEssenceArmorItem;
+import gd.rf.kongzhongtitian.DuckTech.items.FrozenEssenceArmorItem;
 import gd.rf.kongzhongtitian.DuckTech.recipe.DTRecipe;
 import gd.rf.kongzhongtitian.DuckTech.sounds.DTSounds;
 import gd.rf.kongzhongtitian.DuckTech.utils.RecipeOutputUtil;
@@ -92,23 +93,30 @@ public class InjectionMachineBlockEntity extends DTBaseProcessingBlockEntity imp
      */
     private List<ItemStack> resolveOutputs(InjectionMachineRecipe recipe) {
         if (recipe.getOutputTransform() == InjectionMachineRecipe.TRANSFORM_ARMOR_LEVEL_UP) {
-            ItemStack armor = findArmorInInputs();
+            ItemStack armor = findUpgradableArmorInInputs();
             if (armor.isEmpty()) {
                 return List.of();
             }
             ItemStack upgraded = armor.copy();
-            BasicEssenceArmorItem.setLevel(upgraded, BasicEssenceArmorItem.getLevel(upgraded) + 1);
+            if (upgraded.getItem() instanceof BasicEssenceArmorItem) {
+                BasicEssenceArmorItem.setLevel(upgraded, BasicEssenceArmorItem.getLevel(upgraded) + 1);
+            } else if (upgraded.getItem() instanceof FrozenEssenceArmorItem) {
+                FrozenEssenceArmorItem.setLevel(upgraded, FrozenEssenceArmorItem.getLevel(upgraded) + 1);
+            } else {
+                return List.of();
+            }
             upgraded.setDamageValue(0);
             return List.of(upgraded);
         }
         return recipe.getOutputs();
     }
 
-    /** 在输入槽中查找任意一件基础精华盔甲。 */
-    private ItemStack findArmorInInputs() {
+    /** 在输入槽中查找任意一件可升级的精华盔甲（基础或冷冻）。 */
+    private ItemStack findUpgradableArmorInInputs() {
         for (int slot : new int[]{INPUT_SLOT_1, INPUT_SLOT_2}) {
             ItemStack stack = itemStackHandler.getStackInSlot(slot);
-            if (!stack.isEmpty() && stack.getItem() instanceof BasicEssenceArmorItem) {
+            if (!stack.isEmpty() && (stack.getItem() instanceof BasicEssenceArmorItem
+                    || stack.getItem() instanceof FrozenEssenceArmorItem)) {
                 return stack;
             }
         }

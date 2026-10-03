@@ -95,6 +95,7 @@
   "item.ducktech.frozen_essence_chestplate": "Frozen Essence Chestplate",
   "item.ducktech.frozen_essence_leggings": "Frozen Essence Leggings",
   "item.ducktech.frozen_essence_boots": "Frozen Essence Boots",
+  "tooltip.ducktech.essence_armor_level": "Level: %s / %s",
   "item.ducktech.rubber_bucket": "Rubber Bucket",
   "block.ducktech.levitation_machine" : "Levitation Machine",
   "block.ducktech.void_essence_collector" : "Void Essence Collector",
