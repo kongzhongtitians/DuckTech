@@ -30,6 +30,7 @@ import net.minecraftforge.fml.ModList;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -161,7 +162,7 @@ public class DTBlocks {
     public static final RegistryObject<Block> RUBBER_PLANK = registerBlock("rubber_plank",
             () -> new Block(WOOD_PROPERTIES));
     public static final RegistryObject<Block> RUBBER_LEAVES = registerBlock("rubber_leaves",
-    () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
+    () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
         .noOcclusion()
         .isViewBlocking((state, level, pos) -> false)
         .isSuffocating((state, level, pos) -> false)
