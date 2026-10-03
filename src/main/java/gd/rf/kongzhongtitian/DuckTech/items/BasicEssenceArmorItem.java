@@ -129,7 +129,7 @@ public class BasicEssenceArmorItem extends ArmorItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.ducktech.essence_armor_level", getLevel(stack), MAX_LEVEL)
+        tooltip.add(Component.translatable("gui.ducktech.essence_armor_level", getLevel(stack), MAX_LEVEL)
                 .withStyle(ChatFormatting.GRAY));
     }
 }
