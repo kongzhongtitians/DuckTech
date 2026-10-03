@@ -52,17 +52,19 @@ public class LevitationMachineMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // 0-35: 玩家物品栏 (36 slots)
-        // 36: 机器槽位 (1 slot)
+        // 实际槽位顺序：
+        // 0: 机器槽位 (1 slot)
+        // 1-27: 玩家主背包 (27 slots)
+        // 28-36: 玩家快捷栏 (9 slots)
 
-        if (index < 36) {
-            // 从玩家物品栏移动到机器槽位
-            if (!moveItemStackTo(sourceStack, 36, 37, false)) {
+        if (index == 0) {
+            // 从机器槽位移动到玩家物品栏（1-36）
+            if (!moveItemStackTo(sourceStack, 1, 37, false)) {
                 return ItemStack.EMPTY;
             }
-        } else if (index == 36) {
-            // 从机器槽位移动到玩家物品栏
-            if (!moveItemStackTo(sourceStack, 0, 36, false)) {
+        } else if (index >= 1 && index < 37) {
+            // 从玩家物品栏移动到机器槽位（0）
+            if (!moveItemStackTo(sourceStack, 0, 1, false)) {
                 return ItemStack.EMPTY;
             }
         } else {
