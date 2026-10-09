@@ -194,6 +194,48 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
             inputHandlerCap.invalidate();
         }
 
+        @Override
+        public void onLoad() {
+            super.onLoad();
+            // 区块重载后重建 capability，确保漏斗/管道可以正常交互
+            if (!inputHandlerCap.isPresent()) {
+                inputHandlerCap = LazyOptional.of(() -> new IItemHandler() {
+                    @Override
+                    public int getSlots() {
+                        return itemStackHandler.getSlots();
+                    }
+
+                    @Override
+                    public ItemStack getStackInSlot(int slot) {
+                        return ItemStack.EMPTY;
+                    }
+
+                    @Override
+                    public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                        if (slot == 0 && stack.getItem().equals(DTItems.AIR_ESSENCE.get())) {
+                            return itemStackHandler.insertItem(slot, stack, simulate);
+                        }
+                        return stack;
+                    }
+
+                    @Override
+                    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                        return ItemStack.EMPTY;
+                    }
+
+                    @Override
+                    public int getSlotLimit(int slot) {
+                        return itemStackHandler.getSlotLimit(slot);
+                    }
+
+                    @Override
+                    public boolean isItemValid(int slot, ItemStack stack) {
+                        return slot == 0 && stack.getItem().equals(DTItems.AIR_ESSENCE.get());
+                    }
+                });
+            }
+        }
+
         protected final ContainerData data;
         public LevitationMachineBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
             super(DTBlockEntity.LEVITATION_MACHINE_BLOCK_ENTITY.get(), p_155229_, p_155230_);
