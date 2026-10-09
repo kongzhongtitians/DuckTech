@@ -68,6 +68,8 @@ public class EssenceFurnaceBlockEntity extends DTBaseProcessingBlockEntity imple
                         progress = 0;
                     } else if (outputStack.is(item.getItem()) && outputStack.getCount() < outputStack.getMaxStackSize()) {
                         outputStack.grow(1);
+                        // 必须调用 setStackInSlot 触发 onContentsChanged，否则客户端 GUI 不会刷新输出数量
+                        getItemStackHandler().setStackInSlot(1, outputStack);
                         getItemStackHandler().getStackInSlot(0).shrink(1);
                         progress = 0;
                     }
