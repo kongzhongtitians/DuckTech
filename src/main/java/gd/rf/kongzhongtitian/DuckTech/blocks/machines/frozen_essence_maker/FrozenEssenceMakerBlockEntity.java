@@ -113,6 +113,14 @@ public class FrozenEssenceMakerBlockEntity extends BlockEntity implements MenuPr
 
         ItemStack input = itemHandler.getStackInSlot(SLOT_INPUT);
 
+        // 加工完成前校验输入是否仍存在，防止加工过程中被取走后仍产出（复制漏洞）
+        if (input.isEmpty()) {
+            outputCount = 0;
+            progress = 0;
+            setChanged();
+            return;
+        }
+
         progress++;
         if (progress >= maxProgress) {
             if (!level.isClientSide()&& DTConfig.switch_sound()) {
