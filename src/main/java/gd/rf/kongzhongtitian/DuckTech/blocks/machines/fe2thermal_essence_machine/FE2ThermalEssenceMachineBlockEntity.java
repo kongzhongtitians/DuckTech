@@ -25,7 +25,7 @@ public class FE2ThermalEssenceMachineBlockEntity extends BlockEntity implements 
 
     // 能量存储
     private final EnergyStorage energyStorage = new EnergyStorage(10000, 1000, 0, 0);
-    private final LazyOptional<EnergyStorage> energyLazy = LazyOptional.of(() -> energyStorage);
+    private LazyOptional<EnergyStorage> energyLazy = LazyOptional.of(() -> energyStorage);
 
     // 物品存储：只有一个输出槽
     private final ItemStackHandler itemHandler = new ItemStackHandler(1) {
@@ -39,7 +39,7 @@ public class FE2ThermalEssenceMachineBlockEntity extends BlockEntity implements 
             return false;
         }
     };
-    private final LazyOptional<ItemStackHandler> itemLazy = LazyOptional.of(() -> itemHandler);
+    private LazyOptional<ItemStackHandler> itemLazy = LazyOptional.of(() -> itemHandler);
 
     private int tickCounter = 0;
     private static final int TICKS_PER_OPERATION = 20;
@@ -99,6 +99,18 @@ public class FE2ThermalEssenceMachineBlockEntity extends BlockEntity implements 
         super.invalidateCaps();
         energyLazy.invalidate();
         itemLazy.invalidate();
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        // 区块重载后重建 energy 和 item capability，确保能量网络和管道可以正常连接
+        if (!energyLazy.isPresent()) {
+            energyLazy = LazyOptional.of(() -> energyStorage);
+        }
+        if (!itemLazy.isPresent()) {
+            itemLazy = LazyOptional.of(() -> itemHandler);
+        }
     }
 
     @Override
