@@ -33,6 +33,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.EnumMap;
+
 public class ExpulsionMachineBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
     public static final int SLOT_COUNT = 1;
     public static final int FUEL_SLOT = 0;
@@ -191,16 +193,15 @@ public class ExpulsionMachineBlockEntity extends BlockEntity implements MenuProv
                 worldPosition.getZ() + 0.5) <= 64.0;
     }
 
-    private LazyOptional<IItemHandler> itemHandler = LazyOptional.empty();
+    /** 每个方向独立缓存 LazyOptional，避免所有方向复用同一个 SidedInvWrapper */
+    private final EnumMap<Direction, LazyOptional<IItemHandler>> sidedHandlers = new EnumMap<>(Direction.class);
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
         if (!this.remove && side != null && cap == ForgeCapabilities.ITEM_HANDLER) {
             if (side == Direction.DOWN) return LazyOptional.empty();
-            if (!itemHandler.isPresent()) {
-                itemHandler = LazyOptional.of(() -> new SidedInvWrapper(this, side));
-            }
-            return itemHandler.cast();
+            return sidedHandlers.computeIfAbsent(side,
+                    d -> LazyOptional.of(() -> new SidedInvWrapper(this, d))).cast();
         }
         return super.getCapability(cap, side);
     }
@@ -210,21 +211,10 @@ public class ExpulsionMachineBlockEntity extends BlockEntity implements MenuProv
         items.clear();
     }
 
-    // Forge capability (hopper interaction)
-    private final LazyOptional<? extends IItemHandler>[] handlers =
-            SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        for (LazyOptional<?> handler : handlers) handler.invalidate();
-    }
-
-    @Override
-    public void reviveCaps() {
-        super.reviveCaps();
-        handlers[0] = LazyOptional.of(() -> new SidedInvWrapper(this, Direction.UP));
-        handlers[1] = LazyOptional.of(() -> new SidedInvWrapper(this, Direction.DOWN));
-        handlers[2] = LazyOptional.of(() -> new SidedInvWrapper(this, Direction.NORTH));
+        sidedHandlers.values().forEach(LazyOptional::invalidate);
+        sidedHandlers.clear();
     }
 }
