@@ -37,9 +37,10 @@ public class LavaWalkerEventHandler {
         // 等级影响作用半径：1级半径2，2级半径4
         int radius = 1 + enchantLevel * 2;
 
+        // y 范围 -1~0：只处理玩家脚部及脚下一层，不包含头顶上方（y+1），避免把玩家头顶熔岩变成石头困住玩家
         for (BlockPos pos : BlockPos.betweenClosed(
                 playerPos.offset(-radius, -1, -radius),
-                playerPos.offset(radius, 1, radius))) {
+                playerPos.offset(radius, 0, radius))) {
             // 只转换熔岩
             if (level.getFluidState(pos).getType() == Fluids.LAVA) {
                 level.setBlockAndUpdate(pos, Blocks.STONE.defaultBlockState());
