@@ -135,14 +135,6 @@ jar {
     }
 }
 
-jar {
-    manifest {
-        attributes([
-                "MixinConfigs": "ducktech.mixins.json"
-        ])
-    }
-}
-
 tasks.named('processResources', ProcessResources).configure {
 
 
