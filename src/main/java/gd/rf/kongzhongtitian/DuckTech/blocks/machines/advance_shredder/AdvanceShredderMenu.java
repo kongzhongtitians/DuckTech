@@ -1,5 +1,6 @@
 package gd.rf.kongzhongtitian.DuckTech.blocks.machines.advance_shredder;
 
+import gd.rf.kongzhongtitian.DuckTech.DuckTech;
 import gd.rf.kongzhongtitian.DuckTech.blocks.gui.DTMenu;
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlocks;
 import net.minecraft.network.FriendlyByteBuf;
@@ -109,7 +110,7 @@ public class AdvanceShredderMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            System.out.println("Invalid slotIndex: " + index);
+            DuckTech.LOGGER.debug("Invalid slotIndex: {}", index);
             return ItemStack.EMPTY;
         }
 
