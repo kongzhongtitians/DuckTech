@@ -1,5 +1,6 @@
 package gd.rf.kongzhongtitian.DuckTech.api.gui;
 
+import gd.rf.kongzhongtitian.DuckTech.DuckTech;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -53,7 +54,7 @@ public abstract class DTBaseMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            System.out.println("Invalid slotIndex:" + pIndex);
+            DuckTech.LOGGER.debug("Invalid slotIndex: {}", pIndex);
             return ItemStack.EMPTY;
         }
         // If stack size == 0 (the entire stack was moved) set slot contents to null

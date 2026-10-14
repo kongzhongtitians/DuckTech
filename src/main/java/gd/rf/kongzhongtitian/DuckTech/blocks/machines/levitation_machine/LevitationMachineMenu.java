@@ -1,5 +1,6 @@
 package gd.rf.kongzhongtitian.DuckTech.blocks.machines.levitation_machine;
 
+import gd.rf.kongzhongtitian.DuckTech.DuckTech;
 import gd.rf.kongzhongtitian.DuckTech.blocks.gui.DTMenu;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -68,7 +69,7 @@ public class LevitationMachineMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            System.out.println("Invalid slotIndex: " + index);
+            DuckTech.LOGGER.debug("Invalid slotIndex: {}", index);
             return ItemStack.EMPTY;
         }
 
