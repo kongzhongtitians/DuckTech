@@ -234,6 +234,11 @@ public class DTBlocks {
             MEOW_MACHINE = registerBlock("meow_machine", MeowMachine::new);
             DTBlockEntity.MEOW_MACHINE_BLOCK_ENTITY = DTBlockEntity.BLOCK_ENTITY_TYPES.register("meow_machine_block_entity",() -> BlockEntityType.Builder.of(
                     MeowMachineBlockEntity::new,MEOW_MACHINE.get()).build(null));
+        } else {
+            // 未安装 mcmoddoll 时仍占位注册 meow_machine 方块（不注册物品栏图标），
+            // 防止旧存档里的 meow_machine 在加载时被当作缺失方块丢弃；
+            // 世界加载后由 MeowMachineMigration 统一替换为 essence_conversion_machine。
+            MEOW_MACHINE = BLOCKS.register("meow_machine", () -> new Block(MACHINE_PROPERTIES));
         }
     }
 }
