@@ -122,8 +122,8 @@ dependencies {
     implementation fg.deobf("maven.modrinth:biFKOqEN:OlH0eXZ1")
     implementation fg.deobf("maven.modrinth:biFKOqEN:wDUIw89M")
 
-    jarJar("maven.modrinth:biFKOqEN:OlH0eXZ1")
-    jarJar("maven.modrinth:biFKOqEN:wDUIw89M")
+    jarJar("maven.modrinth:biFKOqEN:[OlH0eXZ1,)")
+    jarJar("maven.modrinth:biFKOqEN:[wDUIw89M,)")
 
     runtimeOnly fg.deobf("cn.ksmcbrigade:mcmod-doll:1.0")
 
