@@ -91,6 +91,7 @@ repositories {
         url 'https://maven.blamejared.com'
     }
     mavenCentral()
+    maven { url 'https://gitee.com/kongzhongtitians/maven-repo/raw/main' }
     maven{
         name = "SimpleMavenRepo"
         url = "https://raw.githubusercontent.com/yiyuyan/SimpleMavenRepo/refs/heads/master/"
@@ -119,10 +120,10 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.112")
     implementation 'org.tomlj:tomlj:1.1.0'
 
-    implementation fg.deobf("maven.modrinth:biFKOqEN:OlH0eXZ1")
+    implementation fg.deobf("app.netlify.kongzhongtitian:PipeUtilities:1.20.1forge-1.0.13")
     implementation fg.deobf("maven.modrinth:biFKOqEN:wDUIw89M")
 
-    jarJar("maven.modrinth:biFKOqEN:[OlH0eXZ1,)")
+    jarJar("app.netlify.kongzhongtitian:PipeUtilities:[1.20.1forge-1.0.13)")
     jarJar("maven.modrinth:biFKOqEN:[wDUIw89M,)")
 
     runtimeOnly fg.deobf("cn.ksmcbrigade:mcmod-doll:1.0")
