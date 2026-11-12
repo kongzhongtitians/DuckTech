@@ -92,10 +92,10 @@ repositories {
     }
     mavenCentral()
     maven { url 'https://gitee.com/kongzhongtitians/maven-repo/raw/main' }
-    maven{
-        name = "SimpleMavenRepo"
-        url = "https://raw.githubusercontent.com/yiyuyan/SimpleMavenRepo/refs/heads/master/"
-    }
+    //maven{
+        //name = "SimpleMavenRepo"
+        //url = "https://raw.githubusercontent.com/yiyuyan/SimpleMavenRepo/refs/heads/master/"
+    //}
     exclusiveContent {
         forRepository {
             maven {

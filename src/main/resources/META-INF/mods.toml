@@ -32,7 +32,7 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies."ducktech"]]
-modId = "pipe_api"
+modId = "pipe_utilities"
 mandatory = true
 versionRange = "[1.0.5,)"
 ordering = "NONE"
