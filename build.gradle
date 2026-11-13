@@ -123,7 +123,7 @@ dependencies {
     implementation fg.deobf("app.netlify.kongzhongtitian:PipeUtilities:1.20.1forge-1.0.13")
     implementation fg.deobf("maven.modrinth:biFKOqEN:wDUIw89M")
 
-    jarJar("app.netlify.kongzhongtitian:PipeUtilities:[1.20.1forge-1.0.13)")
+    jarJar("app.netlify.kongzhongtitian:PipeUtilities:[1.20.1forge-1.0.13,)")
     jarJar("maven.modrinth:biFKOqEN:[wDUIw89M,)")
 
     runtimeOnly fg.deobf("cn.ksmcbrigade:mcmod-doll:1.0")
