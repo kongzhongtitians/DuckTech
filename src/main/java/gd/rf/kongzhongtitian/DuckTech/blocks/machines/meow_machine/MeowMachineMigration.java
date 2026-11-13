@@ -1,4 +1,4 @@
-package gd.rf.kongzhongtitian.DuckTech;
+package gd.rf.kongzhongtitian.DuckTech.blocks.machines.meow_machine;
 
 import gd.rf.kongzhongtitian.DuckTech.blocks.reg.DTBlocks;
 import net.minecraft.core.BlockPos;
