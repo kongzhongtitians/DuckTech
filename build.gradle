@@ -14,11 +14,8 @@ plugins {
 }
 apply plugin: 'org.spongepowered.mixin'
 
-group = mod_group_id
-version = mod_version
-
 base {
-    archivesName = mod_id
+    archivesName = 'ducktech'
 }
 
 java {
@@ -28,7 +25,7 @@ java {
 
 
 minecraft {
-    mappings channel: mapping_channel, version: mapping_version
+    mappings channel: "official", version: '1.20.1'
 
     copyIdeResources = true
 
@@ -41,7 +38,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                "${mod_id}" {
+                "ducktech" {
                     source sourceSets.main
                 }
             }
@@ -49,28 +46,28 @@ minecraft {
 
         client {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', mod_id
+            property 'forge.enabledGameTestNamespaces', 'ducktech'
             jvmArgs "-Xmx2560M", "-Xms1G"
         }
 
         server {
-            property 'forge.enabledGameTestNamespaces', mod_id
+            property 'forge.enabledGameTestNamespaces', 'ducktech'
             //args '--nogui'
         }
 
         gameTestServer {
-            property 'forge.enabledGameTestNamespaces', mod_id
+            property 'forge.enabledGameTestNamespaces', 'ducktech'
         }
 
         data {
             workingDirectory project.file('run-data')
 
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'ducktech', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
 }
 mixin {
-    config "${mod_id}.mixins.json"
+    config "ducktech.mixins.json"
 }
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
@@ -113,7 +110,7 @@ repositories {
 
 jarJar.enable()
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    minecraft "net.minecraftforge:forge:1.20.1-47.4.29"
 
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:15.20.0.112")
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.20.0.112")
@@ -129,8 +126,6 @@ dependencies {
     runtimeOnly fg.deobf("cn.ksmcbrigade:mcmod-doll:1.0")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 tasks.named('compileJava', JavaCompile) {
@@ -141,26 +136,10 @@ tasks.named('compileJava', JavaCompile) {
     ]
 }
 
-jar {
-    manifest {
-        attributes([
-                "MixinConfigs": "ducktech.mixins.json"
-        ])
-    }
-}
-
 tasks.named('processResources', ProcessResources).configure {
-
-
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-    }
 }
 
 tasks.named('jar', Jar).configure {
-    manifest {
-
-    }
-
     finalizedBy 'reobfJar'
 }
 

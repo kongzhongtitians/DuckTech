@@ -14,9 +14,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 public class FrozenEssenceArmorMaterial implements ArmorMaterial {
 
     // 耐久基准，对应 靴/腿/胸/头
-    public static final int[] DURABILITY = new int[]{65, 75, 80, 55};
+    public static final int[] DURABILITY = BasicEssenceArmorMaterial.DURABILITY;
     // 护甲基准（会被 NBT 等级覆盖），对应 靴/腿/胸/头
-    public static final int[] DEFENSE = new int[]{1, 4, 5, 2};
+    public static final int[] DEFENSE = BasicEssenceArmorMaterial.DEFENSE;
 
     @Override
     public int getDurabilityForType(ArmorItem.Type type) {

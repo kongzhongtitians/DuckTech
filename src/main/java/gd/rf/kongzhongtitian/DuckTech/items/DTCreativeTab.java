@@ -24,7 +24,7 @@ public class DTCreativeTab {
                         DTItems.ITEMS.getEntries().forEach(entry -> entry.ifPresent(item -> output.accept(item.getDefaultInstance())));
                         for (Item item : ForgeRegistries.ITEMS) {
                             ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
-                            if (id != null && "pipe_api".equals(id.getNamespace())) {
+                            if (id != null && "pipe_utilities".equals(id.getNamespace())) {
                                 output.accept(item);
                             }
                         }

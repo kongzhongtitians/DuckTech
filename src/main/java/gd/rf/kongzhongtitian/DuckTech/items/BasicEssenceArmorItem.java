@@ -33,13 +33,29 @@ import java.util.function.Consumer;
 public class BasicEssenceArmorItem extends ArmorItem {
 
     public static final String LEVEL_TAG = "Level";
-    public static final int MAX_LEVEL = 5;
+    public static final int MAX_LEVEL = 20;
     private static final int[] BASE_DURABILITY = BasicEssenceArmorMaterial.DURABILITY;
     private static final int[] BASE_DEFENSE = BasicEssenceArmorMaterial.DEFENSE;
-    private static final int[] SECOND_DEFENSE = new int[]{2, 5, 6, 2};
-    private static final int[] THIRD_DEFENSE = new int[]{3, 6, 7, 3};
-    private static final int[] FORTH_DEFENSE = new int[]{3, 6, 8, 3};
-    private static final int[] FIFTH_DEFENSE = new int[]{3, 7, 8, 4};
+    //1,4,5,2
+    private static final int[] SECOND_DEFENSE = new int[]{2,4,5,2};
+    private static final int[] THIRD_DEFENSE = new int[]{2,4,6,2};
+    private static final int[] FORTH_DEFENSE = new int[]{2, 5, 6, 2};
+    private static final int[] FIFTH_DEFENSE = new int[]{2, 5, 6, 3};
+    private static final int[] SIXTH_DEFENSE = new int[]{2, 5, 6, 3};
+    private static final int[] SEVENTH_DEFENSE = new int[]{3, 5, 6, 3};
+    private static final int[] EIGHTH_DEFENSE = new int[]{3, 5, 7, 3};
+    private static final int[] NINTH_DEFENSE = new int[]{3, 6, 7, 3};
+    private static final int[] TENTH_DEFENSE = new int[]{3, 6, 7, 3};
+    private static final int[] ELEVENTH_DEFENSE = new int[]{3, 6, 7, 3};
+    private static final int[] TWELFTH_DEFENSE = new int[]{3, 6, 7, 3};
+    private static final int[] THIRTEENTH_DEFENSE = new int[]{3, 6, 7, 3};
+    private static final int[] FOURTEENTH_DEFENSE = new int[]{3, 6, 7, 3};
+    private static final int[] FIFTEENTH_DEFENSE = new int[]{3, 6, 7, 3};
+    private static final int[] SIXTEENTH_DEFENSE = new int[]{3, 6, 8, 3};
+    private static final int[] SEVENTEENTH_DEFENSE = new int[]{3, 6, 8, 3};
+    private static final int[] EIGHTEENTH_DEFENSE = new int[]{3, 6, 8, 3};
+    private static final int[] NINETEENTH_DEFENSE = new int[]{3, 6, 8, 3};
+    private static final int[] TWENTIETH_DEFENSE = new int[]{3, 7, 8, 4};
 
     // 靴/腿/胸/头 的护甲属性修饰符 UUID（与原版标准值一致）
     private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = new UUID[]{
@@ -53,7 +69,6 @@ public class BasicEssenceArmorItem extends ArmorItem {
         super(material, type, properties);
     }
 
-    /** 读取物品的等级，越界时夹到 1~3，未设置返回 1。 */
     public static int getLevel(ItemStack stack) {
         CompoundTag tag = stack.getTag();
         if (tag != null && tag.contains(LEVEL_TAG, CompoundTag.TAG_INT)) {
@@ -73,13 +88,7 @@ public class BasicEssenceArmorItem extends ArmorItem {
         return BASE_DURABILITY[type.getSlot().getIndex()];
     }
 
-    /** 按 NBT 等级返回护甲值属性（护甲值 = 等级）。 */
-    @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
-        if (slot != this.type.getSlot()) {
-            return ImmutableMultimap.of();
-        }
-        int level = getLevel(stack);
+    public static int[] getDefense(int level) {
         int[] defense;
         switch (level){
             case 1:defense=BASE_DEFENSE;break;
@@ -87,8 +96,33 @@ public class BasicEssenceArmorItem extends ArmorItem {
             case 3:defense=THIRD_DEFENSE;break;
             case 4:defense=FORTH_DEFENSE;break;
             case 5:defense=FIFTH_DEFENSE;break;
+            case 6:defense=SIXTH_DEFENSE;break;
+            case 7:defense=SEVENTH_DEFENSE;break;
+            case 8:defense=EIGHTH_DEFENSE;break;
+            case 9:defense=NINTH_DEFENSE;break;
+            case 10:defense=TENTH_DEFENSE;break;
+            case 11:defense=ELEVENTH_DEFENSE;break;
+            case 12:defense=TWELFTH_DEFENSE;break;
+            case 13:defense=THIRTEENTH_DEFENSE;break;
+            case 14:defense=FOURTEENTH_DEFENSE;break;
+            case 15:defense=FIFTEENTH_DEFENSE;break;
+            case 16:defense=SIXTEENTH_DEFENSE;break;
+            case 17:defense=SEVENTEENTH_DEFENSE;break;
+            case 18:defense=EIGHTEENTH_DEFENSE;break;
+            case 19:defense=NINETEENTH_DEFENSE;break;
+            case 20:defense=TWENTIETH_DEFENSE;break;
             default:defense=new int[]{1, 1, 1, 1};break;
         }
+        return defense;
+    }
+
+    /** 按 NBT 等级返回护甲值属性（护甲值 = 等级）。 */
+    @Override
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+        if (slot != this.type.getSlot()) {
+            return ImmutableMultimap.of();
+        }
+        int[] defense = getDefense(getLevel(stack));;
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ARMOR,
                 new AttributeModifier(ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()],

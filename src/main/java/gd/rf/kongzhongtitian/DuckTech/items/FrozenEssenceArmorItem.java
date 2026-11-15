@@ -34,14 +34,9 @@ import java.util.function.Consumer;
  */
 public class FrozenEssenceArmorItem extends ArmorItem {
 
-    public static final String LEVEL_TAG = "Level";
-    public static final int MAX_LEVEL = 5;
+    public static final String LEVEL_TAG = BasicEssenceArmorItem.LEVEL_TAG;
+    public static final int MAX_LEVEL = BasicEssenceArmorItem.MAX_LEVEL;
     private static final int[] BASE_DURABILITY = FrozenEssenceArmorMaterial.DURABILITY;
-    private static final int[] BASE_DEFENSE = FrozenEssenceArmorMaterial.DEFENSE;
-    private static final int[] SECOND_DEFENSE = new int[]{2, 5, 6, 2};
-    private static final int[] THIRD_DEFENSE = new int[]{3, 6, 7, 3};
-    private static final int[] FORTH_DEFENSE = new int[]{3, 6, 8, 3};
-    private static final int[] FIFTH_DEFENSE = new int[]{3, 7, 8, 4};
 
     // 靴/腿/胸/头 的护甲属性修饰符 UUID（与原版标准值一致）
     private static final UUID[] ARMOR_MODIFIER_UUID_PER_SLOT = new UUID[]{
@@ -81,20 +76,11 @@ public class FrozenEssenceArmorItem extends ArmorItem {
         if (slot != this.type.getSlot()) {
             return ImmutableMultimap.of();
         }
-        int level = getLevel(stack);
-        int[] defense;
-        switch (level){
-            case 1:defense=BASE_DEFENSE;break;
-            case 2:defense=SECOND_DEFENSE;break;
-            case 3:defense=THIRD_DEFENSE;break;
-            case 4:defense=FORTH_DEFENSE;break;
-            case 5:defense=FIFTH_DEFENSE;break;
-            default:defense=new int[]{1, 1, 1, 1};break;
-        }
+        int[] defense = BasicEssenceArmorItem.getDefense(getLevel(stack));;
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ARMOR,
                 new AttributeModifier(ARMOR_MODIFIER_UUID_PER_SLOT[slot.getIndex()],
-                        "Basic Essence armor modifier", defense[type.getSlot().getIndex()], AttributeModifier.Operation.ADDITION));
+                        "Frozen Essence armor modifier", defense[type.getSlot().getIndex()], AttributeModifier.Operation.ADDITION));
         return builder.build();
     }
 
