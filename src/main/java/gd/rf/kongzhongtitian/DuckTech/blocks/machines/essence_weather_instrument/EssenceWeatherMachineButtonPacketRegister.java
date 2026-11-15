@@ -1,6 +1,7 @@
 package gd.rf.kongzhongtitian.DuckTech.blocks.machines.essence_weather_instrument;
 
 import gd.rf.kongzhongtitian.DuckTech.DuckTech;
+import gd.rf.kongzhongtitian.DuckTech.items.FrozenEssenceFrostWalkerTogglePacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,7 +13,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 @Mod.EventBusSubscriber(modid = DuckTech.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class EssenceWeatherMachineButtonPacketRegister {
 
-    private static final String PROTOCOL_VERSION = "1";
+    private static final String PROTOCOL_VERSION = "2";
 
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "main"),
@@ -32,6 +33,11 @@ public final class EssenceWeatherMachineButtonPacketRegister {
                     .encoder(EssenceWeatherMachineButtonPacket::encode)
                     .decoder(EssenceWeatherMachineButtonPacket::new)
                     .consumerMainThread(EssenceWeatherMachineButtonPacket::handle)
+                    .add();
+            CHANNEL.messageBuilder(FrozenEssenceFrostWalkerTogglePacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                    .encoder(FrozenEssenceFrostWalkerTogglePacket::encode)
+                    .decoder(FrozenEssenceFrostWalkerTogglePacket::new)
+                    .consumerMainThread(FrozenEssenceFrostWalkerTogglePacket::handle)
                     .add();
         });
     }

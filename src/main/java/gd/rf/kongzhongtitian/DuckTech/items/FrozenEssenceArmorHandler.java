@@ -1,6 +1,7 @@
 package gd.rf.kongzhongtitian.DuckTech.items;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -41,6 +42,12 @@ public class FrozenEssenceArmorHandler {
         return min;
     }
 
+    private static boolean isFrostWalkerEnabled(Player player) {
+        CompoundTag tag = player.getPersistentData();
+        return !tag.contains(FrozenEssenceFrostWalkerTogglePacket.ENABLED_TAG)
+                || tag.getBoolean(FrozenEssenceFrostWalkerTogglePacket.ENABLED_TAG);
+    }
+
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) {
@@ -59,7 +66,7 @@ public class FrozenEssenceArmorHandler {
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 60, 0, false, false));
         }
 
-        if (minSetLevel(player) >= 5) {
+        if (minSetLevel(player) >= 5 && isFrostWalkerEnabled(player)) {
             Level level = player.level();
             BlockPos pos = player.blockPosition();
             FrostWalkerEnchantment.onEntityMoved(player, level, pos, 2);
