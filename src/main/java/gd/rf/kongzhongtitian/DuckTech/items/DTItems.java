@@ -4,8 +4,15 @@ import gd.rf.kongzhongtitian.DuckTech.DuckTech;
 import gd.rf.kongzhongtitian.DuckTech.entities.DTEntities;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -234,6 +241,38 @@ public class DTItems {
             () -> new FrozenEssenceArmorItem(DTArmorMaterial.FROZEN_ESSENCE, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> FROZEN_ESSENCE_BOOTS = ITEMS.register("frozen_essence_boots",
             () -> new FrozenEssenceArmorItem(DTArmorMaterial.FROZEN_ESSENCE, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
+
+    // === 四种金属（锡/铝/铅/银）的工具与盔甲，纹理位于 textures/item/0/ ===
+
+    private static void registerMetalGear(String prefix, Tier tier, ArmorMaterial armor) {
+        // 工具：剑 / 斧 / 镐 / 铲 / 锄
+        ITEMS.register(prefix + "_sword",
+                () -> new SwordItem(tier, 3, -2.4F, new Item.Properties().stacksTo(1)));
+        ITEMS.register(prefix + "_axe",
+                () -> new AxeItem(tier, 6.0F, -3.0F, new Item.Properties().stacksTo(1)));
+        ITEMS.register(prefix + "_pickaxe",
+                () -> new PickaxeItem(tier, 1, -2.8F, new Item.Properties().stacksTo(1)));
+        ITEMS.register(prefix + "_shovel",
+                () -> new ShovelItem(tier, 1.5F, -3.0F, new Item.Properties().stacksTo(1)));
+        ITEMS.register(prefix + "_hoe",
+                () -> new HoeItem(tier, -2, -1.0F, new Item.Properties().stacksTo(1)));
+        // 盔甲：头盔 / 胸甲 / 护腿 / 靴子
+        ITEMS.register(prefix + "_helmet",
+                () -> new ArmorItem(armor, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
+        ITEMS.register(prefix + "_chestplate",
+                () -> new ArmorItem(armor, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
+        ITEMS.register(prefix + "_leggings",
+                () -> new ArmorItem(armor, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
+        ITEMS.register(prefix + "_boots",
+                () -> new ArmorItem(armor, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
+    }
+
+    static {
+        registerMetalGear("tin", DTMetalTier.TIN, MetalArmorMaterial.TIN);
+        registerMetalGear("aluminum", DTMetalTier.ALUMINUM, MetalArmorMaterial.ALUMINUM);
+        registerMetalGear("lead", DTMetalTier.LEAD, MetalArmorMaterial.LEAD);
+        registerMetalGear("silver", DTMetalTier.SILVER, MetalArmorMaterial.SILVER);
+    }
 
     public static RegistryObject<Item> registerSimpleItem(String itemName){
         return ITEMS.register(itemName , ()-> new Item(new Item.Properties()));

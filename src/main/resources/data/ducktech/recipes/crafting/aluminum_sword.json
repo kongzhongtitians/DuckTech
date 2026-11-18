@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    " A ",
+    " B "
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:ingots/aluminum"
+    },
+    "B": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "ducktech:aluminum_sword"
+  }
+}
