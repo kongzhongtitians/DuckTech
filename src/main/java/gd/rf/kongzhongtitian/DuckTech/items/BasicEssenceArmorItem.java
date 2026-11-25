@@ -88,6 +88,12 @@ public class BasicEssenceArmorItem extends ArmorItem {
         return BASE_DURABILITY[type.getSlot().getIndex()];
     }
 
+    /** 禁用铁砧修复：基础精华盔甲仅通过降级回满耐久 / 注射机升级维护。 */
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
+    }
+
     public static int[] getDefense(int level) {
         int[] defense;
         switch (level){
