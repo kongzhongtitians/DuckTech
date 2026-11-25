@@ -70,6 +70,12 @@ public class FrozenEssenceArmorItem extends ArmorItem {
         return BASE_DURABILITY[type.getSlot().getIndex()];
     }
 
+    /** 禁用铁砧修复：冷冻精华盔甲仅通过降级回满耐久 / 注射机升级维护。 */
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
+    }
+
     /** 按 NBT 等级返回护甲值属性（护甲值 = 等级）。 */
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
